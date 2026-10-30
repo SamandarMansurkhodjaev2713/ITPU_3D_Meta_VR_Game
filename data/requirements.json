@@ -1,0 +1,388 @@
+{
+  "schema_version": 1,
+  "baseline_date": "2026-09-16",
+  "requirements": [
+    {
+      "id": "REQ-01",
+      "text": "Quest 3 standalone APK без обязательного ПК-рендеринга",
+      "origin": "USER_FIXED",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-DEVICE-01"
+      ]
+    },
+    {
+      "id": "REQ-02",
+      "text": "Около десяти минут, без внезапного обрыва сеанса",
+      "origin": "USER_FIXED",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-FLOW-01"
+      ]
+    },
+    {
+      "id": "REQ-03",
+      "text": "Ровно три говорящих 3D-NPC с портретным сходством",
+      "origin": "USER_FIXED",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-NPC-01"
+      ]
+    },
+    {
+      "id": "REQ-04",
+      "text": "Ровно три связанных челленджа про разработку гида",
+      "origin": "USER_FIXED",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-C01-01",
+        "TC-C02-01",
+        "TC-C03-01"
+      ]
+    },
+    {
+      "id": "REQ-05",
+      "text": "Stylized PBR: реальные масштаб/география, узнаваемые формы и материалы; портретное сходство без гиперреализма",
+      "origin": "USER_FIXED",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-ART-01",
+        "TC-ART-02",
+        "TC-PBR-DATA"
+      ]
+    },
+    {
+      "id": "REQ-06",
+      "text": "Открытая рабочая 403, подтверждённые коридоры через ресепшен/ниши и кухня; 401/423 только фасады, без 430/436/ядра",
+      "origin": "USER_FIXED",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-ART-02"
+      ]
+    },
+    {
+      "id": "REQ-07",
+      "text": "Полный русский и узбекский контент",
+      "origin": "USER_FIXED",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-LANG-01",
+        "TC-LANG-02"
+      ]
+    },
+    {
+      "id": "REQ-08",
+      "text": "Полное прохождение hands и controllers. Контроллеры: обязательная непрерывная ходьба левым стиком и snap-turn; hands-teleport сохраняется (owner update 2026-09-17).",
+      "origin": "USER_FIXED",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-XR-01",
+        "TC-XR-02"
+      ]
+    },
+    {
+      "id": "REQ-09",
+      "text": "Кофемашина и чашка как свободное взаимодействие",
+      "origin": "USER_FIXED",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-PROP-01",
+        "TC-PROP-02"
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Свободное рисование и стирание",
+      "origin": "USER_FIXED",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-PROP-03",
+        "TC-PROP-04"
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "text": "Бумажный комок и корзина",
+      "origin": "USER_FIXED",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-PROP-05"
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "text": "Выбор вопросов NPC и собственная озвучка участников",
+      "origin": "USER_FIXED",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-NPC-02",
+        "TC-LANG-02"
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "text": "Нет multiplayer и регистрации посетителей",
+      "origin": "USER_FIXED",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-OFFLINE-01"
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "text": "Нет обязательного backend/live-LLM/сети",
+      "origin": "DESIGN_BASELINE",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-OFFLINE-01",
+        "TC-OFFLINE-02"
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "text": "Дополнительные расходы не превышают $50",
+      "origin": "USER_FIXED",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-PACK-BUDGET"
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "text": "Код/модели/сцены создают агенты, владельцы не обязаны разрабатывать вручную",
+      "origin": "USER_FIXED",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-PIPE-01",
+        "TC-PIPE-02"
+      ]
+    },
+    {
+      "id": "REQ-17",
+      "text": "Подготовка документации и исходников в чате разрешена; локальная установка/production/выпуск отдельно после owner approval",
+      "origin": "USER_FIXED",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-PACK-GATE"
+      ]
+    },
+    {
+      "id": "REQ-18",
+      "text": "Даты выпуска пока нет",
+      "origin": "USER_FIXED",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-PACK-STATE"
+      ]
+    },
+    {
+      "id": "REQ-19",
+      "text": "Показ университета правдивый, бренды и работы разрешены",
+      "origin": "USER_FIXED",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-CONTENT-01"
+      ]
+    },
+    {
+      "id": "REQ-20",
+      "text": "Плавность, комфорт и выставочная надёжность",
+      "origin": "USER_FIXED",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-PERF-01",
+        "TC-PERF-02",
+        "TC-OPS-01"
+      ]
+    },
+    {
+      "id": "REQ-21",
+      "text": "Видимый граф реально управляет функцией",
+      "origin": "DESIGN_BASELINE",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-C01-02",
+        "TC-C02-02",
+        "TC-C03-02",
+        "TC-FINAL-01"
+      ]
+    },
+    {
+      "id": "REQ-22",
+      "text": "C01 событие выбора/кнопки вызывает маршрут для выбранной точки",
+      "origin": "DESIGN_BASELINE",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-C01-01",
+        "TC-C01-02",
+        "TC-C01-03"
+      ]
+    },
+    {
+      "id": "REQ-23",
+      "text": "C02 гид ждёт гостя, tabletop и world используют одну логику",
+      "origin": "DESIGN_BASELINE",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-C02-01",
+        "TC-C02-02",
+        "TC-C02-03"
+      ]
+    },
+    {
+      "id": "REQ-24",
+      "text": "C03 проверяет разрешение до локальной учебной операции",
+      "origin": "DESIGN_BASELINE",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-C03-01",
+        "TC-C03-02",
+        "TC-C03-03"
+      ]
+    },
+    {
+      "id": "REQ-25",
+      "text": "Финал использует текущую конфигурацию, не заготовленный успех",
+      "origin": "DESIGN_BASELINE",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-FINAL-01",
+        "TC-FINAL-02"
+      ]
+    },
+    {
+      "id": "REQ-26",
+      "text": "Свободные взаимодействия не блокируют сюжет",
+      "origin": "USER_FIXED",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-FLOW-02"
+      ]
+    },
+    {
+      "id": "REQ-27",
+      "text": "Идемпотентный полный reset, нет событий предыдущей сессии",
+      "origin": "DESIGN_BASELINE",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-SESSION-01",
+        "TC-SESSION-02"
+      ]
+    },
+    {
+      "id": "REQ-28",
+      "text": "Безопасные границы, seated/one-hand и отсутствие движения камеры",
+      "origin": "DESIGN_BASELINE",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-XR-03",
+        "TC-XR-04"
+      ]
+    },
+    {
+      "id": "REQ-29",
+      "text": "Трекинг и смена ввода без дублей/ложных бросков",
+      "origin": "DESIGN_BASELINE",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-XR-05",
+        "TC-XR-06"
+      ]
+    },
+    {
+      "id": "REQ-30",
+      "text": "Лицензии, согласия и version proof до производства",
+      "origin": "DESIGN_BASELINE",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-LEGAL-01",
+        "TC-PIPE-02"
+      ]
+    },
+    {
+      "id": "REQ-31",
+      "text": "Работа после остановки восстанавливается из файлов и checkpoint",
+      "origin": "USER_FIXED",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-OPS-02"
+      ]
+    },
+    {
+      "id": "REQ-32",
+      "text": "Пять содержательных проверок, честные evidence statuses",
+      "origin": "USER_FIXED",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-PACK-EVIDENCE"
+      ]
+    },
+    {
+      "id": "REQ-33",
+      "text": "Техническая цель 90 Hz; изменения профиля только явно",
+      "origin": "DESIGN_BASELINE",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-PERF-01"
+      ]
+    },
+    {
+      "id": "REQ-34",
+      "text": "Личные исходники/ключи не попадают в bundle и APK",
+      "origin": "DESIGN_BASELINE",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-PRIVACY-01"
+      ]
+    },
+    {
+      "id": "REQ-35",
+      "text": "Гид не четвёртый диалоговый NPC",
+      "origin": "DESIGN_BASELINE",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-NPC-01"
+      ]
+    },
+    {
+      "id": "REQ-36",
+      "text": "Нет автоматических покупок/публикации от аудита",
+      "origin": "USER_FIXED",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-PACK-GATE",
+        "TC-PACK-BUDGET"
+      ]
+    },
+    {
+      "id": "REQ-37",
+      "text": "Три неподвижных NPC: повороты/жесты/речь без ходьбы, NavMesh и root motion",
+      "origin": "USER_FIXED",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-NPC-STATION"
+      ]
+    },
+    {
+      "id": "REQ-38",
+      "text": "Границы подтверждённой зоны и закрытые наружные фасады 401/423",
+      "origin": "USER_FIXED",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-SCOPE-ENDS",
+        "TC-INTAKE-AXES"
+      ]
+    },
+    {
+      "id": "REQ-39",
+      "text": "Ограниченные задания Sol с hash-контекстом; доказательства JS и C# разделены",
+      "origin": "DESIGN_DECISION",
+      "priority": "MUST",
+      "test_ids": [
+        "TC-CONTEXT-HASH",
+        "TC-SOURCE-PARITY",
+        "TC-CAPSULE-INTEGRITY"
+      ]
+    }
+  ]
+}

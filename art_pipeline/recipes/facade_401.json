@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "asset_id": "FACADE_401",
+  "generator_type": "door_facade",
+  "level": "production",
+  "dimensions_m": [
+    null,
+    null,
+    null
+  ],
+  "bevel_m": 0.002,
+  "dimensions_provenance": "UNVERIFIED",
+  "source_ids": [
+    "data/evidence_index.json"
+  ],
+  "dimensions_evidence": null,
+  "status": "BLOCKED_METRIC_INPUT"
+}

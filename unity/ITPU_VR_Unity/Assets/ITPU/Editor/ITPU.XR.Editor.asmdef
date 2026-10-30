@@ -1,0 +1,20 @@
+{
+  "name": "ITPU.XR.Editor",
+  "rootNamespace": "ITPU.XR.Editor",
+  "references": [
+    "ITPU.XR",
+    "ITPU.Domain",
+    "Unity.InputSystem",
+    "Unity.XR.CoreUtils",
+    "Unity.XR.Hands",
+    "Unity.XR.Management",
+    "Unity.XR.Management.Editor",
+    "Unity.XR.OpenXR",
+    "Unity.XR.OpenXR.Editor",
+    "Unity.XR.OpenXR.Features.MetaQuestSupport",
+    "Unity.RenderPipelines.Universal.Runtime"
+  ],
+  "includePlatforms": ["Editor"],
+  "autoReferenced": true,
+  "noEngineReferences": false
+}

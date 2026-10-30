@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "asset_id": "PROBE_BADGE",
+  "generator_type": "badge",
+  "level": "prototype",
+  "dimensions_m": [
+    0.07,
+    0.007,
+    0.1
+  ],
+  "bevel_m": 0.00035000000000000005,
+  "dimensions_provenance": "SYNTHETIC_TOOLCHAIN_PROBE",
+  "source_ids": [
+    "SYNTHETIC_TOOLCHAIN_PROBE"
+  ],
+  "dimensions_evidence": null,
+  "not_for_campus": true
+}

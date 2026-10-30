@@ -1,0 +1,14 @@
+{
+  "name": "ITPU.XR.PlayModeTests",
+  "rootNamespace": "ITPU.XR.Tests.PlayMode",
+  "references": [
+    "ITPU.Domain",
+    "ITPU.XR",
+    "Unity.XR.CoreUtils",
+    "Unity.XR.Hands",
+    "Unity.InputSystem"
+  ],
+  "optionalUnityReferences": ["TestAssemblies"],
+  "autoReferenced": false,
+  "noEngineReferences": false
+}

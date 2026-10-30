@@ -1,0 +1,12 @@
+{
+  "name": "ITPU.XR",
+  "rootNamespace": "ITPU.XR",
+  "references": [
+    "ITPU.Domain",
+    "Unity.InputSystem",
+    "Unity.XR.CoreUtils",
+    "Unity.XR.Hands"
+  ],
+  "autoReferenced": true,
+  "noEngineReferences": false
+}

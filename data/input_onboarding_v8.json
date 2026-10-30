@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "status": "DESIGN_NOT_UNITY_IMPLEMENTATION",
+  "teacher": "NPC01",
+  "time_budget_seconds": 50,
+  "stages": [
+    {
+      "id": "INPUT_PICK",
+      "action": "Select hands/controllers and preferred hand via same world UI, do not require gesture recognition to switch away from failed mode"
+    },
+    {
+      "id": "NEAR_ACTION",
+      "action": "One large practice button; near poke or controller select; feedback per event"
+    },
+    {
+      "id": "BADGE",
+      "action": "Take badge then attach/return; holding state must become false before locomotion; skip only as assisted"
+    },
+    {
+      "id": "TRAVEL_AIM",
+      "action": "Hands: demonstrate L-pose and arc. Alternative: explicit travel panel. Controller: scene-configured travel activation, not assumed SDK default"
+    },
+    {
+      "id": "TRAVEL_CONFIRM",
+      "action": "Valid nearby anchor + deliberate select/release. Confirm success via actual move acknowledgement, not input event only"
+    },
+    {
+      "id": "READY",
+      "action": "Continue C01; no compulsory actual physical walking or turning"
+    }
+  ],
+  "repeat_rule": "Only incomplete step; no looping full speech on tracking reacquisition",
+  "failure_rule": "Freeze tutorial timer on tracking loss; show recovery or input mode switch; do not mark full control test PASS from text"
+}

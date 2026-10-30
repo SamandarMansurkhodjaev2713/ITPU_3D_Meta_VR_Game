@@ -1,0 +1,171 @@
+{
+  "schema_version": 12,
+  "rubric_id": "ITPU-ACCEPTANCE-1",
+  "interpretation": "Management weighting, not remaining-hours forecast",
+  "milestones": [
+    {
+      "id": "P01",
+      "title": "Согласованный объём и исходные правила",
+      "weight": 2,
+      "layer": "SOURCE",
+      "depends_on": []
+    },
+    {
+      "id": "P02",
+      "title": "Геометрия и приватные референсы передаются без потерь",
+      "weight": 3,
+      "layer": "SOURCE",
+      "depends_on": [
+        "P01"
+      ]
+    },
+    {
+      "id": "P03",
+      "title": "Текущие автоматические проверки подготовки",
+      "weight": 5,
+      "layer": "SOURCE",
+      "depends_on": [
+        "P01"
+      ]
+    },
+    {
+      "id": "N01",
+      "title": "Доменный C# скомпилирован и проверен",
+      "weight": 5,
+      "layer": "NATIVE",
+      "depends_on": [
+        "P03"
+      ]
+    },
+    {
+      "id": "N02",
+      "title": "Blender импорт/сохранение/повторное открытие",
+      "weight": 8,
+      "layer": "NATIVE",
+      "depends_on": [
+        "P02"
+      ]
+    },
+    {
+      "id": "N03",
+      "title": "Окружение Stylized PBR принято в Unity",
+      "weight": 10,
+      "layer": "ART_NATIVE",
+      "depends_on": [
+        "N02"
+      ]
+    },
+    {
+      "id": "N04",
+      "title": "Ходьба контроллерами/поворот/коллизии в Quest",
+      "weight": 10,
+      "layer": "DEVICE",
+      "depends_on": [
+        "N01",
+        "N03"
+      ]
+    },
+    {
+      "id": "N05",
+      "title": "Полный ввод руками и телепортация в Quest",
+      "weight": 8,
+      "layer": "DEVICE",
+      "depends_on": [
+        "N01",
+        "N03"
+      ]
+    },
+    {
+      "id": "N06",
+      "title": "C01 проверен как игровая функция",
+      "weight": 5,
+      "layer": "DEVICE",
+      "depends_on": [
+        "N04",
+        "N05"
+      ]
+    },
+    {
+      "id": "N07",
+      "title": "C02 проверен как игровая функция",
+      "weight": 5,
+      "layer": "DEVICE",
+      "depends_on": [
+        "N04",
+        "N05"
+      ]
+    },
+    {
+      "id": "N08",
+      "title": "C03 проверен как игровая функция",
+      "weight": 5,
+      "layer": "DEVICE",
+      "depends_on": [
+        "N04",
+        "N05"
+      ]
+    },
+    {
+      "id": "N09",
+      "title": "Свободные взаимодействия и восстановление в Quest",
+      "weight": 7,
+      "layer": "DEVICE",
+      "depends_on": [
+        "N04",
+        "N05"
+      ]
+    },
+    {
+      "id": "N10",
+      "title": "Три похожих стационарных NPC приняты",
+      "weight": 8,
+      "layer": "ART_NATIVE",
+      "depends_on": [
+        "N02",
+        "N03"
+      ]
+    },
+    {
+      "id": "N11",
+      "title": "Русские реплики, звук и UI приняты",
+      "weight": 3,
+      "layer": "CONTENT_NATIVE",
+      "depends_on": [
+        "N10"
+      ]
+    },
+    {
+      "id": "N12",
+      "title": "Узбекские реплики, звук и UI приняты носителем",
+      "weight": 3,
+      "layer": "CONTENT_NATIVE",
+      "depends_on": [
+        "N10"
+      ]
+    },
+    {
+      "id": "N13",
+      "title": "Производительность/паузы/серии сеансов подтверждены",
+      "weight": 7,
+      "layer": "DEVICE",
+      "depends_on": [
+        "N06",
+        "N07",
+        "N08",
+        "N09",
+        "N10",
+        "N11",
+        "N12"
+      ]
+    },
+    {
+      "id": "N14",
+      "title": "Офлайн выпуск, восстановление и стенд приняты",
+      "weight": 6,
+      "layer": "RELEASE",
+      "depends_on": [
+        "N13"
+      ]
+    }
+  ]
+}

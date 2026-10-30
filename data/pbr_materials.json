@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "status": "PROPOSED_VALUES_NOT_CALIBRATED_IN_ENGINE",
+  "owner_style": "Stylized PBR",
+  "workflow": "metallic_roughness",
+  "color_encoding": "srgb_hex",
+  "notes": "Values are authored starting points, not measured campus/brand colors. Scalars only in the first probe; frosted_proxy is an opaque surrogate, not approved glass.",
+  "materials": {
+    "warm_white": {
+      "srgb": "E9E7E0",
+      "roughness": 0.58,
+      "metallic": 0,
+      "class": "dielectric",
+      "usage": "paint / wall"
+    },
+    "oak": {
+      "srgb": "C4AA83",
+      "roughness": 0.55,
+      "metallic": 0,
+      "class": "dielectric",
+      "usage": "wood surface"
+    },
+    "dark": {
+      "srgb": "24272B",
+      "roughness": 0.65,
+      "metallic": 0,
+      "class": "dielectric",
+      "usage": "dark ceiling / plastic"
+    },
+    "frame": {
+      "srgb": "343A3E",
+      "roughness": 0.35,
+      "metallic": 0,
+      "class": "dielectric",
+      "usage": "painted frame; not exposed metal"
+    },
+    "yellow": {
+      "srgb": "D9B72B",
+      "roughness": 0.53,
+      "metallic": 0,
+      "class": "dielectric",
+      "usage": "painted yellow cabinet"
+    },
+    "fabric": {
+      "srgb": "464A4D",
+      "roughness": 0.95,
+      "metallic": 0,
+      "class": "dielectric",
+      "usage": "seat textile"
+    },
+    "ceramic": {
+      "srgb": "F4F0E8",
+      "roughness": 0.23,
+      "metallic": 0,
+      "class": "dielectric",
+      "usage": "cup glaze"
+    },
+    "accent": {
+      "srgb": "59BFC4",
+      "roughness": 0.5,
+      "metallic": 0,
+      "class": "dielectric",
+      "usage": "candidate UI accent; not brand proof"
+    },
+    "frosted_proxy": {
+      "srgb": "C7CECD",
+      "roughness": 0.8,
+      "metallic": 0,
+      "class": "dielectric",
+      "usage": "opaque planning proxy only"
+    },
+    "steel": {
+      "srgb": "B6B9BB",
+      "roughness": 0.28,
+      "metallic": 1,
+      "class": "uncoated_metal",
+      "usage": "exposed steel only where confirmed by reference"
+    }
+  }
+}

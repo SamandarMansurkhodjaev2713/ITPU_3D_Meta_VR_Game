@@ -1,0 +1,12 @@
+{
+  "name": "ITPU.XR.EditModeTests",
+  "rootNamespace": "ITPU.XR.Tests.EditMode",
+  "references": [
+    "ITPU.Domain",
+    "ITPU.XR"
+  ],
+  "includePlatforms": ["Editor"],
+  "optionalUnityReferences": ["TestAssemblies"],
+  "autoReferenced": false,
+  "noEngineReferences": false
+}

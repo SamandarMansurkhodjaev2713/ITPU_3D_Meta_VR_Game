@@ -1,0 +1,1 @@
+{"name":"ITPU.Editor","rootNamespace":"ITPU.Editor","references":["ITPU.Domain","ITPU.Unity"],"includePlatforms":["Editor"],"excludePlatforms":[],"allowUnsafeCode":false,"autoReferenced":true,"noEngineReferences":false}

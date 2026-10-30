@@ -1,0 +1,270 @@
+{
+  "schema_version": 1,
+  "scope": "shared semantic examples, not proof of all parity",
+  "vectors": [
+    {
+      "id": "PROFILE-0",
+      "kind": "profile",
+      "profile": "environment",
+      "npcs": 0,
+      "sessions": 0,
+      "coffee": false,
+      "materials": true,
+      "expected": true
+    },
+    {
+      "id": "PROFILE-1",
+      "kind": "profile",
+      "profile": "environment",
+      "npcs": 0,
+      "sessions": 0,
+      "coffee": false,
+      "materials": false,
+      "expected": false
+    },
+    {
+      "id": "PROFILE-2",
+      "kind": "profile",
+      "profile": "interaction_slice",
+      "npcs": 0,
+      "sessions": 1,
+      "coffee": true,
+      "materials": true,
+      "expected": true
+    },
+    {
+      "id": "PROFILE-3",
+      "kind": "profile",
+      "profile": "complete_game",
+      "npcs": 0,
+      "sessions": 1,
+      "coffee": true,
+      "materials": true,
+      "expected": false
+    },
+    {
+      "id": "PROFILE-4",
+      "kind": "profile",
+      "profile": "complete_game",
+      "npcs": 3,
+      "sessions": 1,
+      "coffee": true,
+      "materials": true,
+      "expected": true
+    },
+    {
+      "id": "PROFILE-5",
+      "kind": "profile",
+      "profile": "release",
+      "npcs": 3,
+      "sessions": 1,
+      "coffee": true,
+      "materials": true,
+      "expected": false
+    },
+    {
+      "id": "AUTH-6",
+      "kind": "auth",
+      "correct": false,
+      "role": "guest",
+      "operation": "view_public_project",
+      "expected": {
+        "allowed": true,
+        "version": 0
+      }
+    },
+    {
+      "id": "AUTH-7",
+      "kind": "auth",
+      "correct": false,
+      "role": "guest",
+      "operation": "edit_route",
+      "expected": {
+        "allowed": true,
+        "version": 1
+      }
+    },
+    {
+      "id": "AUTH-8",
+      "kind": "auth",
+      "correct": false,
+      "role": "team",
+      "operation": "edit_route",
+      "expected": {
+        "allowed": true,
+        "version": 1
+      }
+    },
+    {
+      "id": "AUTH-9",
+      "kind": "auth",
+      "correct": false,
+      "role": "unknown",
+      "operation": "edit_route",
+      "expected": {
+        "allowed": false,
+        "version": 0
+      }
+    },
+    {
+      "id": "AUTH-10",
+      "kind": "auth",
+      "correct": true,
+      "role": "guest",
+      "operation": "view_public_project",
+      "expected": {
+        "allowed": true,
+        "version": 0
+      }
+    },
+    {
+      "id": "AUTH-11",
+      "kind": "auth",
+      "correct": true,
+      "role": "guest",
+      "operation": "edit_route",
+      "expected": {
+        "allowed": false,
+        "version": 0
+      }
+    },
+    {
+      "id": "AUTH-12",
+      "kind": "auth",
+      "correct": true,
+      "role": "team",
+      "operation": "edit_route",
+      "expected": {
+        "allowed": true,
+        "version": 1
+      }
+    },
+    {
+      "id": "AUTH-13",
+      "kind": "auth",
+      "correct": true,
+      "role": "unknown",
+      "operation": "edit_route",
+      "expected": {
+        "allowed": false,
+        "version": 0
+      }
+    },
+    {
+      "id": "DRAW-01",
+      "kind": "draw",
+      "width": 9,
+      "height": 9,
+      "strokes": [
+        [
+          0,
+          0,
+          1,
+          0,
+          0.5,
+          1
+        ]
+      ],
+      "undo": false,
+      "expected": 9
+    },
+    {
+      "id": "DRAW-02",
+      "kind": "draw",
+      "width": 9,
+      "height": 9,
+      "strokes": [
+        [
+          0,
+          0,
+          1,
+          0,
+          0.5,
+          1
+        ],
+        [
+          0.5,
+          0,
+          0.5,
+          0,
+          0.5,
+          0
+        ]
+      ],
+      "undo": false,
+      "expected": 8
+    },
+    {
+      "id": "DRAW-03",
+      "kind": "draw",
+      "width": 9,
+      "height": 9,
+      "strokes": [
+        [
+          0,
+          0,
+          1,
+          0,
+          0.5,
+          1
+        ],
+        [
+          0.5,
+          0,
+          0.5,
+          0,
+          0.5,
+          0
+        ]
+      ],
+      "undo": true,
+      "expected": 9
+    },
+    {
+      "id": "C02-ACTUAL-01",
+      "kind": "c02_actual",
+      "expected": {
+        "locked": false,
+        "brokenStage": "BrokenGuideLeft",
+        "waitingStage": "WaitingForGuest",
+        "heldIndex": 0,
+        "completed": true,
+        "staleAfterReset": false,
+        "resetStage": "BrokenReady"
+      }
+    },
+    {
+      "id": "C03-ACTUAL-01",
+      "kind": "c03_actual",
+      "expected": {
+        "locked": false,
+        "baselineStage": "BaselineBypassProven",
+        "baselineAllowed": true,
+        "baselineVersion": 1,
+        "view": {
+          "accepted": true,
+          "allowed": true,
+          "mutated": false,
+          "version": 0
+        },
+        "deny": {
+          "accepted": true,
+          "allowed": false,
+          "mutated": false,
+          "version": 0
+        },
+        "edit": {
+          "accepted": true,
+          "allowed": true,
+          "mutated": true,
+          "version": 1
+        },
+        "completed": true,
+        "ready": true,
+        "staleRevisionAccepted": false,
+        "resetStage": "BaselineReady",
+        "resetPrerequisite": false
+      }
+    }
+  ]
+}

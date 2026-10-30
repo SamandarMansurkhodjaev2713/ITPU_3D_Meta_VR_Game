@@ -1,0 +1,207 @@
+{
+  "interactions": [
+    {
+      "id": "INT-01",
+      "name": "Бейдж",
+      "priority": "MUST",
+      "state_flow": "Ready>Held>Docked",
+      "story_required": true,
+      "input_modes": [
+        "hands",
+        "controllers"
+      ],
+      "test_ids": [
+        "TC-FLOW-01"
+      ],
+      "status": "NOT_IMPLEMENTED",
+      "readiness_scope": "UNITY_XR_NOT_INTEGRATED"
+    },
+    {
+      "id": "INT-02",
+      "name": "Кофемашина и чашка",
+      "priority": "MUST",
+      "state_flow": "Idle>CupReady>Brewing>Paused>Ready",
+      "story_required": false,
+      "input_modes": [
+        "hands",
+        "controllers"
+      ],
+      "test_ids": [
+        "TC-PROP-01"
+      ],
+      "status": "SOURCES_PREPARED_NOT_UNITY_TESTED",
+      "readiness_scope": "UNITY_XR_NOT_INTEGRATED",
+      "v6_contract": "docs/process/ASSEMBLY_AND_CONTACTS_V6.md"
+    },
+    {
+      "id": "INT-03",
+      "name": "Доска/маркер/ластик",
+      "priority": "MUST",
+      "state_flow": "Idle>ActiveStroke>CommittedOrCancelled>UndoOrClear",
+      "story_required": false,
+      "input_modes": [
+        "hands",
+        "controllers"
+      ],
+      "test_ids": [
+        "TC-PROP-03"
+      ],
+      "status": "SOURCES_PREPARED_NOT_UNITY_TESTED",
+      "readiness_scope": "UNITY_XR_NOT_INTEGRATED",
+      "implementation": "src/domain/DrawingSurface.cs",
+      "limits": {
+        "width": 256,
+        "height": 128,
+        "palette_entries": 6,
+        "undo_snapshots": 12
+      },
+      "erase": "palette index0 raster segment, partial not all strokes"
+    },
+    {
+      "id": "INT-04",
+      "name": "Бумага и корзина",
+      "priority": "MUST",
+      "state_flow": "Sheet>Crumpled>Held>Thrown>ScoredOrMiss>Pooled",
+      "story_required": false,
+      "input_modes": [
+        "hands",
+        "controllers"
+      ],
+      "test_ids": [
+        "TC-PROP-05"
+      ],
+      "status": "SOURCES_PREPARED_NOT_UNITY_TESTED",
+      "readiness_scope": "UNITY_XR_NOT_INTEGRATED",
+      "implementation_scope": "Basket entry/dwell domain probe prepared; XR throw/pool integration NOT_RUN"
+    },
+    {
+      "id": "INT-05",
+      "name": "Вопросы NPC",
+      "priority": "MUST",
+      "state_flow": "Available>Selected>Speaking>Closed",
+      "story_required": false,
+      "input_modes": [
+        "hands",
+        "controllers"
+      ],
+      "test_ids": [
+        "TC-NPC-02"
+      ],
+      "status": "NOT_IMPLEMENTED",
+      "readiness_scope": "UNITY_XR_NOT_INTEGRATED"
+    },
+    {
+      "id": "INT-06",
+      "name": "Наружные фасады закрытых дверей",
+      "priority": "MUST",
+      "state_flow": "Closed>HandleFeedback>Closed",
+      "story_required": false,
+      "input_modes": [
+        "hands",
+        "controllers"
+      ],
+      "test_ids": [
+        "TC-XR-04"
+      ],
+      "status": "SOURCES_PREPARED_NOT_UNITY_TESTED",
+      "description": "No opening of excluded rooms. 403 has no invented entrance door. Door probe is pipeline test only, not installed gameplay.",
+      "readiness_scope": "UNITY_XR_NOT_INTEGRATED"
+    },
+    {
+      "id": "INT-07",
+      "name": "Ноутбук",
+      "priority": "SHOULD",
+      "state_flow": "Closed>Open>Demo",
+      "story_required": false,
+      "input_modes": [
+        "hands",
+        "controllers"
+      ],
+      "test_ids": [
+        "TC-FLOW-02"
+      ],
+      "status": "NOT_IMPLEMENTED",
+      "readiness_scope": "UNITY_XR_NOT_INTEGRATED"
+    },
+    {
+      "id": "INT-08",
+      "name": "Проекты",
+      "priority": "SHOULD",
+      "state_flow": "Available>Selected>Playing>Closed",
+      "story_required": false,
+      "input_modes": [
+        "hands",
+        "controllers"
+      ],
+      "test_ids": [
+        "TC-CONTENT-01"
+      ],
+      "status": "NOT_IMPLEMENTED",
+      "readiness_scope": "UNITY_XR_NOT_INTEGRATED"
+    },
+    {
+      "id": "INT-09",
+      "name": "Внутри предмета",
+      "priority": "SHOULD",
+      "state_flow": "Normal>ReadOnlyTrace>Normal",
+      "story_required": false,
+      "input_modes": [
+        "hands",
+        "controllers"
+      ],
+      "test_ids": [
+        "TC-FINAL-01"
+      ],
+      "status": "NOT_IMPLEMENTED",
+      "readiness_scope": "UNITY_XR_NOT_INTEGRATED"
+    },
+    {
+      "id": "INT-10",
+      "name": "Параметр кода",
+      "priority": "COULD",
+      "state_flow": "Default>Edited>Reset",
+      "story_required": false,
+      "input_modes": [
+        "hands",
+        "controllers"
+      ],
+      "test_ids": [
+        "TC-FLOW-02"
+      ],
+      "status": "NOT_IMPLEMENTED",
+      "readiness_scope": "UNITY_XR_NOT_INTEGRATED"
+    },
+    {
+      "id": "INT-11",
+      "name": "Приветствие",
+      "priority": "COULD",
+      "state_flow": "Idle>Invited>Acknowledged",
+      "story_required": false,
+      "input_modes": [
+        "hands",
+        "controllers"
+      ],
+      "test_ids": [
+        "TC-NPC-02"
+      ],
+      "status": "NOT_IMPLEMENTED",
+      "readiness_scope": "UNITY_XR_NOT_INTEGRATED"
+    },
+    {
+      "id": "INT-12",
+      "name": "Ящик/книга",
+      "priority": "COULD",
+      "state_flow": "Closed>Open>Closed",
+      "story_required": false,
+      "input_modes": [
+        "hands",
+        "controllers"
+      ],
+      "test_ids": [
+        "TC-FLOW-02"
+      ],
+      "status": "NOT_IMPLEMENTED",
+      "readiness_scope": "UNITY_XR_NOT_INTEGRATED"
+    }
+  ]
+}

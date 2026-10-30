@@ -1,0 +1,7 @@
+{
+  "name": "ITPU.Domain",
+  "rootNamespace": "ITPU.Domain",
+  "references": [],
+  "autoReferenced": true,
+  "noEngineReferences": true
+}

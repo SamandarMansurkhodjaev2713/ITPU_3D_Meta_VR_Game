@@ -1,0 +1,74 @@
+using System;
+using System.Collections.Generic;
+using ITPU.Domain;
+internal static class Program
+{
+    private static int passed,failed;
+    private static CompiledGraph G(Challenge c,bool correct=true){return GraphCompiler.Compile(GraphCompiler.Template(c,correct));}
+    private static void Check(bool condition,string detail="Assertion failed"){if(!condition)throw new Exception(detail);}
+    private static void Throws(Action a){bool thrown=false;try{a();}catch(ArgumentException){thrown=true;}catch(InvalidOperationException){thrown=true;}Check(thrown,"Expected guarded rejection");}
+    private static void Test(string name,Action action){try{action();passed++;Console.WriteLine("PASS "+name);}catch(Exception e){failed++;Console.WriteLine("FAIL "+name+" "+e.Message);}}
+    private static Topology Map(){return new Topology(new[]{"A","B","C"},new[]{Tuple.Create("A","B"),Tuple.Create("B","C")});}
+    private static int Main(string[] args)
+    {
+        if(args.Length==2&&args[0]=="--vectors")return VectorCases.Run(args[1]);
+        if(args.Length!=0)throw new ArgumentException("Expected --vectors path or no arguments");
+        foreach(Challenge c in new[]{Challenge.C01,Challenge.C02,Challenge.C03})
+        {
+            Test(c+" fixed",()=>Check(!G(c).Baseline));Test(c+" baseline",()=>Check(G(c,false).Baseline));
+            Test(c+" duplicate edge",()=>{var d=GraphCompiler.Template(c);d.Edges.Add(d.Edges[0]);Throws(()=>GraphCompiler.Compile(d));});
+            Test(c+" unknown node",()=>{var d=GraphCompiler.Template(c);d.Nodes.Add("bad","ReadFile");Throws(()=>GraphCompiler.Compile(d));});
+        }
+        Test("C01 selected route A-B-A",()=>{var s=new Session();var b=new ButtonRouter(s,Map(),"A",G(Challenge.C01));b.Activate("B",1,s.Token);Check(b.RouteSnapshot().Length==2);b.Activate("C",2,s.Token);Check(b.RouteSnapshot().Length==3);b.Activate("B",3,s.Token);Check(b.RouteSnapshot().Length==2);});
+        Test("C01 baseline no effect",()=>{var s=new Session();var b=new ButtonRouter(s,Map(),"A",G(Challenge.C01,false));Check(!b.Activate("B",1,s.Token));Check(b.RouteSnapshot().Length==0);});
+        Test("C01 duplicate event",()=>{var s=new Session();var b=new ButtonRouter(s,Map(),"A",G(Challenge.C01));Check(b.Activate("B",1,s.Token));Check(!b.Activate("B",1,s.Token));});
+        Test("C01 stale token",()=>{var s=new Session();var t=s.Token;var b=new ButtonRouter(s,Map(),"A",G(Challenge.C01));s.Reset();Check(!b.Activate("B",1,t));Check(b.Activate("B",1,s.Token));});
+        Test("C01 actual no-handler then A-B-A",()=>{var s=new Session();var c=new C01RouteChallenge(s,Map(),"A","B","C");var t=s.Token;var no=c.Press(1,t);Check(!no.Accepted&&no.NoHandler&&no.Route.Length==0);Check(c.AttachHandler(t));Check(c.Press(2,t).Accepted);Check(c.SelectDestination("C",t));Check(c.Press(3,t).Accepted);Check(c.SelectDestination("B",t));var done=c.Press(4,t);Check(done.Completed&&done.Stage==C01Stage.Verified);var trace=c.TraceSnapshot();Check(Array.Exists(trace,x=>x.Event=="NoHandler"));Check(Array.FindAll(trace,x=>x.Event=="ShowRoute").Length==3);});
+        Test("C01 actual duplicate does not advance",()=>{var s=new Session();var c=new C01RouteChallenge(s,Map(),"A","B","C");var t=s.Token;c.AttachHandler(t);Check(c.Press(7,t).Accepted);c.SelectDestination("C",t);int before=c.TraceSnapshot().Length;Check(!c.Press(7,t).Accepted);Check(c.TraceSnapshot().Length==before&&!c.Completed);});
+        Test("C01 reset clears route and stale token",()=>{var s=new Session();var c=new C01RouteChallenge(s,Map(),"A","B","C");var old=s.Token;c.AttachHandler(old);c.Press(1,old);Check(c.RouteSnapshot().Length>0);s.Reset();Check(!c.Press(2,old).Accepted);c.ResetForCurrentSession();Check(c.RouteSnapshot().Length==0&&c.Stage==C01Stage.MissingHandler);});
+        Test("Topology no invented room",()=>Throws(()=>Map().Route("A","401_INTERIOR")));
+        Test("Topology disconnected",()=>Throws(()=>new Topology(new[]{"A","B"},new Tuple<string,string>[0]).Route("A","B")));
+        Test("C02 waits",()=>{var s=new Session();var g=new Guide(s,new[]{"A","B"},G(Challenge.C02));g.Step(true,false,true,s.Token);Check(g.State==GuideState.Waiting);g.Step(false,false,true,s.Token);Check(g.Index==0);g.Step(false,true,true,s.Token);g.Step(false,false,true,s.Token);Check(g.Index==1);});
+        Test("C02 defect reproducible",()=>{var s=new Session();var g=new Guide(s,new[]{"A","B"},G(Challenge.C02,false));g.Step(true,false,true,s.Token);g.Step(false,false,true,s.Token);Check(g.Index==1);});
+        Test("C02 lost tracking",()=>{var s=new Session();var g=new Guide(s,new[]{"A"},G(Challenge.C02));g.Step(true,true,false,s.Token);Check(g.State==GuideState.Moving);});
+        Test("C02 teleport resync",()=>{var s=new Session();var g=new Guide(s,new[]{"A","B"},G(Challenge.C02));Check(g.ConfirmedTeleport("B",s.Token));Check(g.Index==1);Check(!g.ConfirmedTeleport("OTHER",s.Token));});
+        Test("C02 actual defect wait resume",()=>{var s=new Session();var c=new C02WaitChallenge(s,new[]{"A"});var t=s.Token;Check(!c.Step(true,false,true,t));Check(s.Complete(Challenge.C01,t));Check(c.Step(true,false,true,t)&&c.Stage==C02Stage.BrokenGuideLeft);Check(c.InstallWaitRule(t));Check(c.Step(true,false,true,t)&&c.Stage==C02Stage.WaitingForGuest);Check(c.Step(true,false,true,t)&&c.WaypointIndex==0);Check(c.Step(false,true,true,t)&&c.Stage==C02Stage.GuestConfirmed);Check(c.Step(false,false,true,t)&&c.Completed&&s.IsCompleted(Challenge.C02));});
+        Test("C02 actual pause tracking reset",()=>{var s=new Session();var c=new C02WaitChallenge(s,new[]{"A"});var old=s.Token;s.Complete(Challenge.C01,old);c.Step(true,false,true,old);c.InstallWaitRule(old);s.SetPause("test",true);Check(!c.Step(true,false,true,old));s.SetPause("test",false);Check(!c.Step(true,false,false,old));s.Reset();c.ResetForCurrentSession();Check(!c.Step(true,false,true,old)&&c.Stage==C02Stage.BrokenReady&&!c.PrerequisiteMet);});
+        Test("C02 actual teleport backtrack",()=>{var s=new Session();var c=new C02WaitChallenge(s,new[]{"A","B"});var t=s.Token;s.Complete(Challenge.C01,t);c.Step(true,false,true,t);c.InstallWaitRule(t);Check(c.ConfirmedTeleport("B",true,t));Check(c.WaypointIndex==1&&c.Stage==C02Stage.WaitingForGuest);Check(!c.ConfirmedTeleport("A",true,t)&&c.WaypointIndex==1);c.Step(false,true,true,t);Check(c.Step(false,false,true,t)&&c.Completed);});
+        Test("Arrival hysteresis",()=>{var a=new ArrivalSensor();Check(!a.Sample(.9,.1));Check(a.Sample(.9,.1));Check(a.Sample(1.2,.1));Check(!a.Sample(1.5,.1));});
+        Test("Arrival tracking resets dwell",()=>{var a=new ArrivalSensor();a.Sample(.9,.15);a.Sample(.9,.1,false);Check(!a.Sample(.9,.1));});
+        Test("Arrival NaN rejected",()=>Throws(()=>new ArrivalSensor().Sample(double.NaN,.1)));
+        Test("AUTH baseline isolated",()=>{var a=new AuthSandbox(G(Challenge.C03,false));Check(a.Execute(DemoRole.Guest,DemoOperation.EditRoute).Mutated);Check(a.RouteVersion==1);a.Reset();Check(a.RouteVersion==0);});
+        Test("AUTH guest view",()=>Check(new AuthSandbox(G(Challenge.C03)).Execute(DemoRole.Guest,DemoOperation.ViewPublicProject).Allowed));
+        Test("AUTH guest edit denied",()=>{var a=new AuthSandbox(G(Challenge.C03));Check(!a.Execute(DemoRole.Guest,DemoOperation.EditRoute).Allowed);Check(a.RouteVersion==0);});
+        Test("AUTH team edit",()=>Check(new AuthSandbox(G(Challenge.C03)).Execute(DemoRole.Team,DemoOperation.EditRoute).Mutated));
+        Test("AUTH invalid enum fail closed",()=>Check(!new AuthSandbox(G(Challenge.C03,false)).Execute((DemoRole)999,DemoOperation.EditRoute).Allowed));
+        Test("AUTH allow all fails",()=>{var d=GraphCompiler.Template(Challenge.C03);d.Permissions=new PermissionFlags(true,true,true);Check(!AuthSandbox.Verify(GraphCompiler.Compile(d)));});
+        Test("AUTH deny all fails",()=>{var d=GraphCompiler.Template(Challenge.C03);d.Permissions=new PermissionFlags(false,false,false);Check(!AuthSandbox.Verify(GraphCompiler.Compile(d)));});
+        Test("C03 actual baseline gate matrix",()=>{var s=new Session();var c=new C03AuthorizationChallenge(s);var t=s.Token;Check(!c.DemonstrateBaselineBypass(true,t).Accepted);Check(s.Complete(Challenge.C01,t));Check(s.Complete(Challenge.C02,t));var broken=c.DemonstrateBaselineBypass(true,t);Check(broken.Accepted&&broken.Allowed&&broken.Mutated&&broken.VersionBefore==0&&broken.VersionAfter==1);Check(c.InstallGate(PermissionFlags.Correct,t));var r=c.PolicyRevision;var view=c.Execute(DemoRole.Guest,DemoOperation.ViewPublicProject,true,r,t);Check(view.Accepted&&view.Allowed&&!view.Mutated&&view.VersionAfter==0);var deny=c.Execute(DemoRole.Guest,DemoOperation.EditRoute,true,r,t);Check(deny.Accepted&&!deny.Allowed&&!deny.Mutated&&deny.VersionAfter==0);var edit=c.Execute(DemoRole.Team,DemoOperation.EditRoute,true,r,t);Check(edit.Accepted&&edit.Allowed&&edit.Mutated&&edit.VersionAfter==1&&edit.Completed&&s.Ready);});
+        Test("C03 allow all never completes",()=>{var s=new Session();var c=new C03AuthorizationChallenge(s);var t=s.Token;s.Complete(Challenge.C01,t);s.Complete(Challenge.C02,t);c.DemonstrateBaselineBypass(true,t);c.InstallGate(new PermissionFlags(true,true,true),t);var r=c.PolicyRevision;Check(c.Execute(DemoRole.Guest,DemoOperation.ViewPublicProject,true,r,t).Accepted);Check(!c.Execute(DemoRole.Guest,DemoOperation.EditRoute,true,r,t).Accepted);Check(c.Execute(DemoRole.Team,DemoOperation.EditRoute,true,r,t).Accepted);Check(!c.Completed&&!s.IsCompleted(Challenge.C03));});
+        Test("C03 deny all never completes",()=>{var s=new Session();var c=new C03AuthorizationChallenge(s);var t=s.Token;s.Complete(Challenge.C01,t);s.Complete(Challenge.C02,t);c.DemonstrateBaselineBypass(true,t);c.InstallGate(new PermissionFlags(false,false,false),t);var r=c.PolicyRevision;Check(!c.Execute(DemoRole.Guest,DemoOperation.ViewPublicProject,true,r,t).Accepted);Check(c.Execute(DemoRole.Guest,DemoOperation.EditRoute,true,r,t).Accepted);Check(!c.Execute(DemoRole.Team,DemoOperation.EditRoute,true,r,t).Accepted);Check(!c.Completed&&!s.IsCompleted(Challenge.C03));});
+        Test("C03 policy revision and reset invalidate success",()=>{var s=new Session();var c=new C03AuthorizationChallenge(s);var stale=s.Token;s.Complete(Challenge.C01,stale);s.Complete(Challenge.C02,stale);c.DemonstrateBaselineBypass(true,stale);c.InstallGate(PermissionFlags.Correct,stale);var r=c.PolicyRevision;c.Execute(DemoRole.Guest,DemoOperation.ViewPublicProject,true,r,stale);c.Execute(DemoRole.Guest,DemoOperation.EditRoute,true,r,stale);Check(c.Execute(DemoRole.Team,DemoOperation.EditRoute,true,r,stale).Completed);Check(c.InstallGate(PermissionFlags.Correct,stale));Check(!c.Completed&&!s.IsCompleted(Challenge.C03));Check(!c.Execute(DemoRole.Guest,DemoOperation.ViewPublicProject,true,r,stale).Accepted);s.Reset();c.ResetForCurrentSession();Check(!c.Execute(DemoRole.Guest,DemoOperation.ViewPublicProject,true,c.PolicyRevision,stale).Accepted);Check(c.Stage==C03Stage.BaselineReady&&!c.PrerequisiteMet);});
+        Test("C03 unknown role and tracking fail closed",()=>{var s=new Session();var c=new C03AuthorizationChallenge(s);var t=s.Token;s.Complete(Challenge.C01,t);s.Complete(Challenge.C02,t);c.DemonstrateBaselineBypass(true,t);c.InstallGate(PermissionFlags.Correct,t);var r=c.PolicyRevision;var count=c.TraceSnapshot().Length;var unknown=c.Execute((DemoRole)999,DemoOperation.EditRoute,true,r,t);Check(!unknown.Accepted&&!unknown.Allowed&&!unknown.Mutated&&!c.Completed);Check(!c.Execute(DemoRole.Guest,DemoOperation.ViewPublicProject,false,r,t).Accepted);Check(c.TraceSnapshot().Length==count);});
+        Test("Final cannot use broken waiting",()=>Throws(()=>CompiledGuideConfig.Seal(G(Challenge.C01),G(Challenge.C02,false),G(Challenge.C03))));
+        Test("Final keeps policy",()=>{var p=G(Challenge.C03);var f=CompiledGuideConfig.Seal(G(Challenge.C01),G(Challenge.C02),p);Check(object.ReferenceEquals(p,f.Policy));});
+        Test("Nested pauses",()=>{var s=new Session();s.SetPause("system",true);s.SetPause("tracking",true);s.SetPause("tracking",false);Check(s.Paused);});
+        Test("Session cannot complete C03 first",()=>{var s=new Session();Check(!s.Complete(Challenge.C03,s.Token));Check(!s.Complete(Challenge.C02,s.Token));Check(s.Complete(Challenge.C01,s.Token));Check(s.Complete(Challenge.C02,s.Token));Check(s.Complete(Challenge.C03,s.Token));Check(s.Ready);});
+        Test("Reset stale completion",()=>{var s=new Session();var t=s.Token;s.Reset();Check(!s.Complete(Challenge.C01,t));Check(!s.Ready);});
+        Test("Coffee no cup",()=>Check(!new CoffeeMachine().Press()));
+        Test("Coffee repeated press",()=>{var c=new CoffeeMachine();c.Dock();Check(c.Press());c.Tick(.1);double f=c.Fill;Check(!c.Press());Check(c.Fill==f);});
+        Test("Coffee paused removed",()=>{var c=new CoffeeMachine();c.Dock();c.Press();c.Tick(.1);double f=c.Fill;c.Remove();c.Tick(.2);Check(c.Fill==f);Check(c.State==CoffeeState.Paused);});
+        Test("Coffee complete",()=>{var c=new CoffeeMachine(1);c.Dock();c.Press();for(int i=0;i<20;i++)c.Tick(.25);Check(c.Fill==1);Check(c.State==CoffeeState.Ready);});
+        Test("Coffee held cannot empty",()=>{var c=new CoffeeMachine(1);c.Dock();c.Press();c.Tick(.25);Check(!c.Empty(true));Check(c.Fill==.25);});
+        Test("Ownership duplicate grab",()=>{var o=new PropOwnership();Check(o.Grab("left"));Check(!o.Grab("right"));});
+        Test("Tracking loss not throw",()=>{var o=new PropOwnership();o.Grab("left");o.TrackingLost();Check(!o.Release("left",true).MayThrow);});
+        Test("NPC anchor immutable",()=>{var n=new NpcStation(new Vec3(1,2,3));for(int i=0;i<10000;i++)n.Look(Math.Sin(i)*100,.016);Check(n.Anchor.X==1&&n.Anchor.Y==2&&n.Anchor.Z==3);Check(Math.Abs(n.BodyYaw)<=25&&Math.Abs(n.HeadYaw)<=35);});
+        Test("NPC does not follow behind",()=>{var n=new NpcStation(new Vec3(0,0,0));n.Look(170,1);Check(n.BodyYaw==0&&n.HeadYaw==0);});
+        Test("Reaction priority",()=>Check(!new ReactionGate().TryReact(0,true)));
+        Test("Reaction cooldown",()=>{var r=new ReactionGate();Check(r.TryReact(0));Check(!r.TryReact(1));Check(r.TryReact(12));});
+        Test("Trace ring bounded",()=>{var t=new TraceBuffer(3);var token=new Session().Token;for(int i=0;i<20;i++)t.Add(token,1,"a","b","c");Check(t.Count==3);Check(t.Snapshot()[0].Sequence==18);});
+        Test("Trace relative time",()=>{long now=100;var t=new TraceBuffer(3,()=>now);var token=new Session().Token;t.Add(token,1,"a","b","c");now=107;t.Add(token,1,"a","b","c");now=103;t.Add(token,1,"a","b","c");var x=t.Snapshot();Check(x[0].RelativeTimeMs==0&&x[1].RelativeTimeMs==7&&x[2].RelativeTimeMs==7);});
+        V6Cases.Run(Test);
+        Console.WriteLine("RESULT C# domain: "+passed+" passed; "+failed+" failed. Not a Unity or Quest test.");return failed==0?0:1;
+    }
+}

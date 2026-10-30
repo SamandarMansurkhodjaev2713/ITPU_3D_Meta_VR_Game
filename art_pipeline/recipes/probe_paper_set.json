@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "asset_id": "PROBE_PAPER_SET",
+  "generator_type": "paper_set",
+  "level": "prototype",
+  "dimensions_m": [
+    0.21,
+    0.297,
+    0.001
+  ],
+  "bevel_m": 5e-05,
+  "dimensions_provenance": "SYNTHETIC_TOOLCHAIN_PROBE",
+  "source_ids": [
+    "SYNTHETIC_TOOLCHAIN_PROBE"
+  ],
+  "dimensions_evidence": null,
+  "not_for_campus": true
+}

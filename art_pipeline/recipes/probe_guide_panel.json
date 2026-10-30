@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "asset_id": "PROBE_GUIDE_PANEL",
+  "generator_type": "guide_panel",
+  "level": "prototype",
+  "dimensions_m": [
+    0.6,
+    0.045,
+    0.4
+  ],
+  "bevel_m": 0.002,
+  "dimensions_provenance": "SYNTHETIC_TOOLCHAIN_PROBE",
+  "source_ids": [
+    "SYNTHETIC_TOOLCHAIN_PROBE"
+  ],
+  "dimensions_evidence": null,
+  "not_for_campus": true
+}

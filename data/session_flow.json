@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "duration_target_seconds": 600,
+  "stages": [
+    {
+      "id": "S00",
+      "duration_seconds": 50,
+      "name": "Onboarding",
+      "zone_id": "WORK_403",
+      "description": "Выбор RU/UZ, hands/controllers, бейдж и один телепорт рядом."
+    },
+    {
+      "id": "S01",
+      "duration_seconds": 110,
+      "name": "C01 Interface",
+      "zone_id": "WORK_403",
+      "description": "C01: интерфейс, обработчик и две точки назначения; NPC01 остаётся у стола."
+    },
+    {
+      "id": "S02",
+      "duration_seconds": 50,
+      "name": "Reception / transition to niche",
+      "zone_id": "HALL_LEFT",
+      "description": "Переход через ресепшен к нишам; необязательная пауза без возврата на кухню."
+    },
+    {
+      "id": "S03",
+      "duration_seconds": 120,
+      "name": "C02 Waiting",
+      "zone_id": "NICHE_413",
+      "description": "C02: ожидание гостя; NPC02 остаётся у одной активной ниши."
+    },
+    {
+      "id": "S04",
+      "duration_seconds": 120,
+      "name": "C03 Permission",
+      "zone_id": "KITCHEN",
+      "description": "Переход к кухне включён в бюджет; NPC03 и C03; кофе только свободное действие."
+    },
+    {
+      "id": "S05",
+      "duration_seconds": 100,
+      "name": "Integrated release",
+      "zone_id": "KITCHEN",
+      "description": "Общий запуск у острова, те же config/trace; все NPC остаются на местах."
+    },
+    {
+      "id": "S06",
+      "duration_seconds": 50,
+      "name": "Closing",
+      "zone_id": "KITCHEN",
+      "description": "Короткий итог, свободные вопросы/кофе, выход со стендовым приглашением."
+    }
+  ],
+  "npc_ids": [
+    "NPC01",
+    "NPC02",
+    "NPC03"
+  ],
+  "challenge_ids": [
+    "C01",
+    "C02",
+    "C03"
+  ],
+  "languages": [
+    "ru",
+    "uz"
+  ],
+  "input_modes": [
+    "hands",
+    "controllers"
+  ],
+  "hard_timeout": false,
+  "source_of_truth": "Ordered story and budget only. Adjacency in spatial_scope; metric coordinates not yet accepted."
+}

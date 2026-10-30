@@ -1,0 +1,443 @@
+{
+  "schema_version": 1,
+  "status": "PLAN_NOT_EXECUTION_LOG",
+  "cases": [
+    {
+      "id": "TC-DEVICE-01",
+      "scope": "QUEST",
+      "procedure": "Запустить установленную APK без ПК-рендера",
+      "expected": "Игра работает на Quest 3; hash/build записаны.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-FLOW-01",
+      "scope": "HUMAN",
+      "procedure": "Новичок проходит обычный маршрут с резервом свободных действий",
+      "expected": "Замер близок к 8–10 минутам; нет принудительного затемнения.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-FLOW-02",
+      "scope": "UNITY",
+      "procedure": "Пройти все задания без кофе, рисунка и корзины",
+      "expected": "Финал доступен; свободные действия не выставляют обязательные flags.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-NPC-01",
+      "scope": "HUMAN",
+      "procedure": "Сравнить трёх NPC с разрешёнными фото, считать говорящих персонажей",
+      "expected": "Три принятых узнаваемых аватара; указатель не отдельный NPC.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-NPC-02",
+      "scope": "QUEST",
+      "procedure": "Задать вопрос, уйти, вернуться, повторить; событие шутки во время инструкции",
+      "expected": "Короткий ответ, нет наложения/повторного приветствия без причины.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-ART-01",
+      "scope": "UNITY",
+      "procedure": "Экспорт/импорт cube 1 м, двери и направления forward",
+      "expected": "Размер, оси, pivot и материал совпадают с контрактом.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-ART-02",
+      "scope": "HUMAN",
+      "procedure": "Сопоставить floorplan, фото и проходимую сцену",
+      "expected": "География/масштаб приняты; нет лишних открытых комнат.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-LANG-01",
+      "scope": "PACK_AND_QUEST",
+      "procedure": "Сравнить ключи RU/UZ; осмотреть панели во всех сценах",
+      "expected": "Нет пропусков/glyph missing; смысл принят носителем.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-LANG-02",
+      "scope": "HUMAN",
+      "procedure": "Проверить каждую обязательную voice line по ключу и исходнику",
+      "expected": "Собственные разрешённые голоса; UZ/RU принят; без клиппинга.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-XR-01",
+      "scope": "QUEST",
+      "procedure": "Полный маршрут RU/UZ с контроллерами",
+      "expected": "Все обязательные и базовые свободные действия доступны.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-XR-02",
+      "scope": "QUEST",
+      "procedure": "Полный маршрут RU/UZ только руками",
+      "expected": "Нет скрытого требования контроллера для teleport/menu/final.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-XR-03",
+      "scope": "QUEST",
+      "procedure": "Полный маршрут сидя и одной рукой для обязательных действий",
+      "expected": "Достижимость, UI, перемещение и финал без сложных обязательных жестов.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-XR-04",
+      "scope": "QUEST",
+      "procedure": "Проверить телепорт у стен/стола, финальную модель и камеру",
+      "expected": "Нет выхода в коллайдер; нет искусственного движения/масштабирования камеры.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-XR-05",
+      "scope": "QUEST",
+      "procedure": "Потерять руку при grab/throw, затем восстановить",
+      "expected": "Нет ложного броска/дубля/потери обязательного предмета.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-XR-06",
+      "scope": "QUEST",
+      "procedure": "Поставить предмет, сменить ввод; попытаться сменить при удержании",
+      "expected": "Один owner, безопасная передача, прогресс сохранён.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-PROP-01",
+      "scope": "UNITY",
+      "procedure": "Чашка → start → remove → return → repeat press",
+      "expected": "Подача приостанавливается, процесс не дублируется.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-PROP-02",
+      "scope": "QUEST",
+      "procedure": "Бросить чашку в недоступное место, затем reset",
+      "expected": "Возврат без движения удерживаемой чашки; baseline восстановлен.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-PROP-03",
+      "scope": "QUEST",
+      "procedure": "Нарисовать, стереть часть, отменить штрих в обоих вводах",
+      "expected": "Штрихи на доске; частичное стирание; корректная отмена.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-PROP-04",
+      "scope": "UNITY",
+      "procedure": "Довести рисунок до лимита; очистить и сменить сеанс",
+      "expected": "Нет неограниченных GameObject/памяти; данные посетителя удалены.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-PROP-05",
+      "scope": "QUEST",
+      "procedure": "Смять/бросить, попасть/промахнуться, потерять tracking",
+      "expected": "Ограниченный pool; счёт только внутри корзины; нет блокировки сюжета.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-OFFLINE-01",
+      "scope": "QUEST",
+      "procedure": "Отключить сеть перед стартом и пройти весь маршрут",
+      "expected": "Нет аккаунтного входа/регистрации; данные и звук локальны.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-OFFLINE-02",
+      "scope": "QUEST",
+      "procedure": "Потерять трансляцию на внешний экран в середине",
+      "expected": "Игра не прерывается; оператор может отдельно восстановить канал.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-PACK-BUDGET",
+      "scope": "PACK",
+      "procedure": "Суммировать расходы и проверить approval matrix",
+      "expected": "Лимит 50; spent подтверждён; нет automatic_spend.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-PACK-GATE",
+      "scope": "PACK",
+      "procedure": "Запросить install/develop/publish у review gate",
+      "expected": "DENY до явного соответствующего owner approval.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-PACK-STATE",
+      "scope": "PACK",
+      "procedure": "Проверить initial state и кандидаты версий",
+      "expected": "Дата не выдумана; runtime/device NOT_RUN; exact versions не выдуманы.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-PIPE-01",
+      "scope": "BLENDER_AND_UNITY",
+      "procedure": "Повторно создать asset из сохранённого рецепта и импортировать",
+      "expected": "Нет дублей; семантические размеры/материалы воспроизводимы.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-PIPE-02",
+      "scope": "DEVICE_PIPELINE",
+      "procedure": "Проверить лицензию/version pin и выполнить P1 round-trip",
+      "expected": "Версии/доказательства действительны; нет main/latest в lock.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-CONTENT-01",
+      "scope": "HUMAN",
+      "procedure": "Проверить логотипы, заявления, биографии и карточки проектов",
+      "expected": "Каждый факт/право принят; нет выдуманных обещаний поступления.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-PERF-01",
+      "scope": "QUEST",
+      "procedure": "Прогретые worst-case сцены с выбранными инструментами метрик",
+      "expected": "90 Hz цель; кадры оценены по заранее согласованному протоколу, без фиктивных цифр.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-PERF-02",
+      "scope": "QUEST",
+      "procedure": "60 минут работы плюс ≥6 сеансов reset",
+      "expected": "Нет воспроизводимого зависания/монотонной утечки; logs сохранены.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-OPS-01",
+      "scope": "HUMAN",
+      "procedure": "Полная репетиция стенда от надевания до нового посетителя",
+      "expected": "Безопасная зона/оператор/reset/резерв реально готовы.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-OPS-02",
+      "scope": "PACK_AND_EDITOR",
+      "procedure": "Прервать рабочую задачу, закрыть процесс и возобновить по checkpoint",
+      "expected": "Нет потери source edits; следующий шаг восстанавливается без повторной анкеты.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-C01-01",
+      "scope": "DOMAIN",
+      "procedure": "Запустить кнопку без handler, затем с валидной связью",
+      "expected": "До исправления route не вызывается; после вызывается ровно один раз.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-C01-02",
+      "scope": "UNITY",
+      "procedure": "Назначения A→B→A; сравнить trace и представления",
+      "expected": "Карта/коридор используют выбранный ID, не hard-code.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-C01-03",
+      "scope": "DOMAIN",
+      "procedure": "Соединить несовместимые порты и повторно нажать кнопку",
+      "expected": "Неверная связь отклонена; нет второго экземпляра гида.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-C02-01",
+      "scope": "DOMAIN",
+      "procedure": "Гость отсутствует, затем прибыл к waypoint",
+      "expected": "После исправления переход ждёт; затем продолжает.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-C02-02",
+      "scope": "UNITY",
+      "procedure": "Одинаковый input-sequence в tabletop и world adapters",
+      "expected": "Одинаковые доменные переходы при разных визуальных масштабах.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-C02-03",
+      "scope": "QUEST",
+      "procedure": "Телепорт вперёд/назад, pause во время ожидания",
+      "expected": "Нет тупика и автоматического движения камеры.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-C03-01",
+      "scope": "DOMAIN",
+      "procedure": "Три роли/операции AUTH-01..03 после gate",
+      "expected": "ALLOW/DENY/ALLOW соответственно.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-C03-02",
+      "scope": "DOMAIN",
+      "procedure": "Только скрыть кнопку и выполнить demo bypass, затем gate",
+      "expected": "Первый учебный тест выявляет ошибку, второй блокирует до изменения state.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-C03-03",
+      "scope": "DOMAIN",
+      "procedure": "Unknown role/operation и попытка изменённого запроса",
+      "expected": "Fail closed; роль из фиксированного контекста; только sandbox ресурсы.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-FINAL-01",
+      "scope": "UNITY",
+      "procedure": "Сменить разрешённую конфигурацию до final, наблюдать trace",
+      "expected": "Финал использует тот же snapshot и реальные события.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-FINAL-02",
+      "scope": "QUEST",
+      "procedure": "Вращать/масштабировать модель, затем reset",
+      "expected": "Камера не изменяется; данные прошлого посетителя не остаются.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-SESSION-01",
+      "scope": "UNITY",
+      "procedure": "Два reset подряд в разных стадиях и на фоне voice",
+      "expected": "Идемпотентность; состояние и pool восстановлены.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-SESSION-02",
+      "scope": "DOMAIN",
+      "procedure": "Доставить старое событие после нового session token",
+      "expected": "Событие игнорируется, новые задания не завершаются.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-LEGAL-01",
+      "scope": "HUMAN",
+      "procedure": "Сверить Unity use case, consent и third-party inventory",
+      "expected": "Письменные основания и разрешения; не утверждение агента.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-PRIVACY-01",
+      "scope": "PACK_AND_BUILD",
+      "procedure": "Проверить bundle/репозиторий/APK на приватные исходники и секреты",
+      "expected": "Нет лишних лиц/голосов/credentials/MCP в публичном пакете/приложении.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-PACK-EVIDENCE",
+      "scope": "PACK",
+      "procedure": "Сверить audit passes, статусы и пути доказательств",
+      "expected": "Нет runtime PASS без фактической среды/артефакта; пять содержательных направлений.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-NPC-STATION",
+      "scope": "QUEST",
+      "procedure": "Обойти каждого NPC, отойти за спину, поставить паузу и выполнить reset; проверить position/Animator/поворот.",
+      "expected": "Три фиксированных корня; нет walk/навигатора/root motion; жесты возвращаются в idle; нет поворота шеи на 180°.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-SCOPE-ENDS",
+      "scope": "UNITY",
+      "procedure": "Сверить проходы с owner scope; попытаться открыть фасады 401/423 и войти в 430/436.",
+      "expected": "Закрытые фасады узнаваемы; лишних проходимых интерьеров/перемычки нет; 403 не закрыта выдуманной дверью.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-CONTEXT-HASH",
+      "scope": "PACK",
+      "procedure": "Создать task capsule, изменить один исходник, сверить hash перед задачей.",
+      "expected": "Изменение выявлено; старая capsule не выдаётся за актуальную.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-SOURCE-PARITY",
+      "scope": "DOMAIN",
+      "procedure": "Запустить Node и C# тесты на одной версии; сопоставить матрицу позитивных/негативных случаев.",
+      "expected": "Оба раннера отдельно исполнены; отсутствие dotnet не считается PASS C#.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-PBR-DATA",
+      "procedure": "Read v4 shared materials; numeric conversion and bad-input cases; then separate neutral engine probe.",
+      "expected": "Correct data/channel intent, no implicit engine/Quest pass.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-INTAKE-AXES",
+      "procedure": "Feed explicit owner-measured WHD fixture and incomplete/invalid cases into intake validator.",
+      "expected": "WDH mapping correct; absent values remain absent; opening/leaf not conflated.",
+      "result": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "TC-CAPSULE-INTEGRITY",
+      "procedure": "Generate capsule, mutate work order then input and payload independently; reverify.",
+      "expected": "Each modification is rejected; current exact capsule passes.",
+      "result": "NOT_RUN",
+      "evidence": null
+    }
+  ]
+}

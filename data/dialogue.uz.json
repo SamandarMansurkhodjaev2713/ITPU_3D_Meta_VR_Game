@@ -1,0 +1,414 @@
+{
+  "schema_version": 1,
+  "language": "uz",
+  "review_status": "DRAFT_REQUIRES_HUMAN_REVIEW",
+  "voice_recording_status": "REFERENCE_AUDIO_RECEIVED_FINAL_LINES_NOT_RECORDED",
+  "entries": [
+    {
+      "id": "NPC01_START_HELLO",
+      "speaker": "NPC01",
+      "main_path": true,
+      "text": "Salom! Men Samandarman. Do‘stlarim bilan ITPU bo‘ylab interaktiv gid yaratyapmiz. Bugun sen ham jamoamizdasan.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_START_BADGE",
+      "speaker": "NPC01",
+      "main_path": true,
+      "text": "Beyjikni ol. Bugun sen ham jamoamiz aʼzosisan.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_START_NOCODE",
+      "speaker": "NPC01",
+      "main_path": false,
+      "text": "Oldindan dasturlashni bilish shart emas. Avval nima sodir bo‘lishi kerakligini aniqlaymiz.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_START_MOVE",
+      "speaker": "NPC01",
+      "main_path": true,
+      "text": "Bo‘sh qo‘lingni belgilangan joyga qarat. Bosh va ko‘rsatkich barmoqlaringni birlashtir, keyin ajrat. Uzoqqa piyoda yurish shart emas.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_C01_INVITE",
+      "speaker": "NPC01",
+      "main_path": true,
+      "text": "Mehmon xonani topmoqchi. Keling, tushunarli panel tuzamiz: xarita, manzil va yo‘lni ko‘rsatish tugmasi.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_C01_PLACE",
+      "speaker": "NPC01",
+      "main_path": true,
+      "text": "Elementni, keyin esa uning joyini tanla. Uni qo‘l bilan ko‘chirsa ham bo‘ladi.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_C01_NOHANDLER",
+      "speaker": "NPC01",
+      "main_path": true,
+      "text": "Tugma chiroyli. Endi u vaʼda qilgan ishni ham bajarsin.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_C01_CODEVIEW",
+      "speaker": "NPC01",
+      "main_path": true,
+      "text": "Dasturchi ko‘rinishini och. Bu yerda tugma bosilgandan keyin nima sodir bo‘lishi ko‘rinadi.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_C01_CONNECT",
+      "speaker": "NPC01",
+      "main_path": true,
+      "text": "Tugma bosilishini tanlangan manzilga yo‘l ko‘rsatish bilan bog‘la.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_C01_TRY",
+      "speaker": "NPC01",
+      "main_path": true,
+      "text": "Endi o‘zing yasagan tugmani bos. Boshqa manzilni ham tanlab ko‘r.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_C01_SUCCESS",
+      "speaker": "NPC01",
+      "main_path": true,
+      "text": "Ishladi! Inson harakatini dastur amali bilan bog‘lading. Endi tokcha yonidagi Ashraf bilan tanish.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_C01_HINT",
+      "speaker": "NPC01",
+      "main_path": false,
+      "text": "Tugma bosilishi blokidan boshla. Keyin yo‘lni ko‘rsatadigan blokni tanla.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_C01_ASSIST",
+      "speaker": "NPC01",
+      "main_path": false,
+      "text": "Bu bog‘lanishni birga tuzishimiz mumkin. Keyin natijani o‘zing tekshirasan.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_FREE_COFFEE",
+      "speaker": "NPC01",
+      "main_path": false,
+      "text": "Oshxonada qahva tayyorlash mumkin. Loyiha esa bir daqiqa kutib turadi.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_FREE_CUP",
+      "speaker": "NPC01",
+      "main_path": false,
+      "text": "Ajoyib. Endi loyihamizda qahva uchun ham mablag‘ bor.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_QUESTION_UI",
+      "speaker": "NPC01",
+      "main_path": false,
+      "text": "Interfeys odamga nima qilish mumkinligini tushuntiradi. Lekin har bir amal ortida ishlaydigan mantiq bo‘lishi kerak.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_QUESTION_PROJECT",
+      "speaker": "NPC01",
+      "main_path": false,
+      "text": "Hozirgi loyihamiz — shu VR o‘yin. Sen uning g‘oyalaridan birini tekshirishga yordam beryapsan.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC02_C02_HELLO",
+      "speaker": "NPC02",
+      "main_path": true,
+      "text": "Men Ashrafman. Panel tayyor — endi gid odamni kuta olishini tekshiramiz.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC02_C02_BUG",
+      "speaker": "NPC02",
+      "main_path": true,
+      "text": "Yo‘lni biladi. Lekin odam ham unga yetib olishi kerakligini hali bilmaydi.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC02_C02_STEP",
+      "speaker": "NPC02",
+      "main_path": true,
+      "text": "Qadamma-qadam tekshirishni yoq. Nega kutmayotganini ko‘ramiz.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC02_C02_WAIT",
+      "speaker": "NPC02",
+      "main_path": true,
+      "text": "Keyingi nuqtaga o‘tishdan oldin shart qo‘sh: mehmonni kutish.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC02_C02_PREVIEW",
+      "speaker": "NPC02",
+      "main_path": true,
+      "text": "Mehmon belgisini siljit. Mehmon yaqinlashguncha ko‘rsatkich kutishi kerak.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC02_C02_WORLD",
+      "speaker": "NPC02",
+      "main_path": true,
+      "text": "Endi shu xatti-harakatni yo‘lakda tekshiramiz. Shoshilma — gid kutib turadi.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC02_C02_SUCCESS",
+      "speaker": "NPC02",
+      "main_path": true,
+      "text": "Mana endi u yordamchi bo‘ldi. Oldin esa o‘ziga juda ishongan ko‘rsatkich edi.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC02_C02_HINT",
+      "speaker": "NPC02",
+      "main_path": false,
+      "text": "Mehmon hali belgilangan nuqtaga kelmadi. Dastur oldinga yurmay, kutib turishi kerak.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC02_FREE_DRAW",
+      "speaker": "NPC02",
+      "main_path": false,
+      "text": "Doskada rasm chizish mumkin. Yaxshi g‘oya uchun darrov kod yozish shart emas.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC02_FREE_DRAWN",
+      "speaker": "NPC02",
+      "main_path": false,
+      "text": "Qoldiramiz. Keyingi loyihaning boshlanishiga o‘xshaydi.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC02_FREE_BASKET",
+      "speaker": "NPC02",
+      "main_path": false,
+      "text": "Aniq tushdi. Vazifalarni ham shunday uddalash yoqimli.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC02_FREE_MISS",
+      "speaker": "NPC02",
+      "main_path": false,
+      "text": "Hechqisi yo‘q. Birinchi versiya kamdan-kam hollarda oxirgisi bo‘ladi.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC02_QUESTION_BUG",
+      "speaker": "NPC02",
+      "main_path": false,
+      "text": "Xato — taxminni tekshirish uchun sabab. Muhimi, sababini tushunish, tuzatish va yana tekshirish.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC02_QUESTION_BEGIN",
+      "speaker": "NPC02",
+      "main_path": false,
+      "text": "Kichik vazifadan boshlash mumkin: nima sodir bo‘lishi kerak va natijani qanday tekshiramiz.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC03_C03_HELLO",
+      "speaker": "NPC03",
+      "main_path": true,
+      "text": "Men Yanman. Ishlayapti — zo‘r. Endi mehmonga qaysi amallar ruxsat etilganini tekshiramiz.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC03_C03_HIDDEN",
+      "speaker": "NPC03",
+      "main_path": true,
+      "text": "Tahrirlash tugmasini yashirdik. Lekin test hali ham amalning o‘zini ishga tushira oladi.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC03_C03_BUG",
+      "speaker": "NPC03",
+      "main_path": true,
+      "text": "Tugmani yashirdik. Ammo amalni taqiqlashni unutdik.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC03_C03_GATE",
+      "speaker": "NPC03",
+      "main_path": true,
+      "text": "Ruxsatni faqat tugmani ko‘rsatishdan oldin emas, so‘rovni bajarishdan oldin tekshirish kerak.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC03_C03_RUN",
+      "speaker": "NPC03",
+      "main_path": true,
+      "text": "Uchta testni ishga tushir: mehmon loyihani ko‘radi, mehmon yo‘lni o‘zgartiradi, jamoa yo‘lni o‘zgartiradi.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC03_C03_DENYALL",
+      "speaker": "NPC03",
+      "main_path": false,
+      "text": "Hammasini taqiqlash oson. Lekin unda mehmonlar giddan foydalana olmaydi.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC03_C03_SUCCESS",
+      "speaker": "NPC03",
+      "main_path": true,
+      "text": "Endi kerakli amallar ishlaydi, taqiqlanganlari esa maʼlumotni o‘zgartirmaydi. Hammasini birga ishga tushirsak bo‘ladi.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC03_QUESTION_REAL",
+      "speaker": "NPC03",
+      "main_path": false,
+      "text": "Bu yerda faqat o‘quv maʼlumotlari bor. Test universitetning haqiqiy tizimlari va hisoblariga ulanmagan.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC03_QUESTION_SECURITY",
+      "speaker": "NPC03",
+      "main_path": false,
+      "text": "Xavfsizlik faqat hujumdan himoyalanish emas. Dastur odatiy ishlaganda ham to‘g‘ri qoidalarga amal qilishi kerak.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_FINAL_START",
+      "speaker": "NPC01",
+      "main_path": true,
+      "text": "Mehmon rejimini ishga tushir. Bu endi siz yaratgan ishlaydigan versiya.",
+      "audio_file": null,
+      "approval": null,
+      "delivery": "LABELLED_REMOTE_PRERECORDED_ON_GUIDE_PANEL",
+      "no_avatar_relocation": true
+    },
+    {
+      "id": "NPC02_FINAL_TRACE",
+      "speaker": "NPC02",
+      "main_path": true,
+      "text": "Endi bir marta bosish ortida nima bo‘lganini ko‘rish mumkin: hodisa, tekshiruv va natija.",
+      "audio_file": null,
+      "approval": null,
+      "delivery": "LABELLED_REMOTE_PRERECORDED_ON_GUIDE_PANEL",
+      "no_avatar_relocation": true
+    },
+    {
+      "id": "NPC03_FINAL_SUMMARY",
+      "speaker": "NPC03",
+      "main_path": true,
+      "text": "Sen interfeys tuzding, xatti-harakatni tuzatding va ruxsatlarni tekshirding. Bu dasturlashning kichik bir qismi, lekin u allaqachon ishlayapti.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_FINAL_MEET",
+      "speaker": "NPC01",
+      "main_path": true,
+      "text": "Samandar aloqada. Birinchi loyiha ishga tushdi. Endi garniturasiz tanishamizmi?",
+      "audio_file": null,
+      "approval": null,
+      "delivery": "LABELLED_REMOTE_PRERECORDED_ON_GUIDE_PANEL",
+      "no_avatar_relocation": true
+    },
+    {
+      "id": "SYSTEM_PAUSED",
+      "speaker": "SYSTEM",
+      "main_path": true,
+      "text": "O‘yin to‘xtatib turildi. Qulay bo‘lganda davom etamiz.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "SYSTEM_TRACKING",
+      "speaker": "SYSTEM",
+      "main_path": true,
+      "text": "Qo‘llar hozir ko‘rinmayapti. Ularni oldinga tut, keyin davom et.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "SYSTEM_RECOVER_PROP",
+      "speaker": "SYSTEM",
+      "main_path": false,
+      "text": "Buyum taglikka qaytdi. Yana urinib ko‘rish mumkin.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "SYSTEM_ASSIST",
+      "speaker": "SYSTEM",
+      "main_path": false,
+      "text": "Bitta qadamni ko‘rsataymi? Qolganini o‘zing tekshira olasan.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "SYSTEM_RESET",
+      "speaker": "SYSTEM",
+      "main_path": true,
+      "text": "Yangi seans tayyor. Til va boshqaruv usulini tanlang.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "SYSTEM_WRONG_LINK",
+      "speaker": "SYSTEM",
+      "main_path": false,
+      "text": "Bu bloklar bir-biriga ulanmaydi. Mos kirishni tanla.",
+      "audio_file": null,
+      "approval": null
+    }
+  ]
+}

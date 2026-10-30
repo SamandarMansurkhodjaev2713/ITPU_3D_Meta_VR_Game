@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "repository": "SamandarMansurkhodjaev2713/ITPU_3D_Meta_VR_Game",
+  "status": "EMPTY_TEMPLATE_NOT_APPROVAL",
+  "instructions": "Agent reads candidate contents and records exact Git-blob SHA256, path, classification PUBLIC_SOURCE_REVIEWED and a concrete review_note. Do not auto-populate by listing every file. Empty template must fail publication.",
+  "reviewed_blobs": []
+}

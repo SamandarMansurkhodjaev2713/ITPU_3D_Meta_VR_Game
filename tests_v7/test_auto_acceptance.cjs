@@ -1,0 +1,10 @@
+"use strict";
+const assert=require('node:assert/strict');
+const A=require('../src/reference/auto_acceptance.js');
+const out=A.run();
+assert.equal(out.status,'PASS',JSON.stringify(out.cases.filter(x=>x.status==='FAIL')));
+assert.equal(out.failed,0);
+assert.ok(out.total>=25);
+assert.equal(out.passed,out.total);
+for(const g of ['Profiles','C01','C02','C03','Final','Session','Recovery','Drawing','Coffee','Basket'])assert.ok(out.groups[g],`missing group ${g}`);
+console.log(JSON.stringify(out,null,2));

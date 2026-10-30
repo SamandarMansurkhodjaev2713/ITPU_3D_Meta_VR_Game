@@ -1,0 +1,414 @@
+{
+  "schema_version": 1,
+  "language": "ru",
+  "review_status": "DRAFT_REQUIRES_HUMAN_REVIEW",
+  "voice_recording_status": "REFERENCE_AUDIO_RECEIVED_FINAL_LINES_NOT_RECORDED",
+  "entries": [
+    {
+      "id": "NPC01_START_HELLO",
+      "speaker": "NPC01",
+      "main_path": true,
+      "text": "Привет! Я Самандар. Мы с ребятами делаем интерактивный гид по ITPU. Сегодня ты — в нашей команде.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_START_BADGE",
+      "speaker": "NPC01",
+      "main_path": true,
+      "text": "Возьми бейдж. Сегодня ты в нашей команде.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_START_NOCODE",
+      "speaker": "NPC01",
+      "main_path": false,
+      "text": "Не нужно заранее уметь программировать. Начнём с того, что должно происходить.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_START_MOVE",
+      "speaker": "NPC01",
+      "main_path": true,
+      "text": "Направь свободную руку на отмеченное место. Сведи большой и указательный пальцы, затем отпусти. Далеко идти ногами не нужно.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_C01_INVITE",
+      "speaker": "NPC01",
+      "main_path": true,
+      "text": "Гость хочет найти кабинет. Давай сделаем понятную панель: карта, место и кнопка маршрута.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_C01_PLACE",
+      "speaker": "NPC01",
+      "main_path": true,
+      "text": "Выбери элемент, затем место для него. Можно и просто перенести его рукой.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_C01_NOHANDLER",
+      "speaker": "NPC01",
+      "main_path": true,
+      "text": "Кнопка красивая. Осталось, чтобы она делала то, что обещает.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_C01_CODEVIEW",
+      "speaker": "NPC01",
+      "main_path": true,
+      "text": "Открой вид разработчика. Здесь видно, что происходит после нажатия.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_C01_CONNECT",
+      "speaker": "NPC01",
+      "main_path": true,
+      "text": "Соедини нажатие с показом пути к выбранному месту.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_C01_TRY",
+      "speaker": "NPC01",
+      "main_path": true,
+      "text": "Теперь нажми свою кнопку. И попробуй выбрать другое место.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_C01_SUCCESS",
+      "speaker": "NPC01",
+      "main_path": true,
+      "text": "Работает! Ты связал действие человека с действием программы. Теперь познакомься с Ашрафом у ниши.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_C01_HINT",
+      "speaker": "NPC01",
+      "main_path": false,
+      "text": "Начни с блока нажатия. Затем выбери блок, который показывает маршрут.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_C01_ASSIST",
+      "speaker": "NPC01",
+      "main_path": false,
+      "text": "Можем собрать эту связь вместе. Потом ты сам проверишь результат.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_FREE_COFFEE",
+      "speaker": "NPC01",
+      "main_path": false,
+      "text": "На кухне можно сделать кофе. А проект подождёт минутку.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_FREE_CUP",
+      "speaker": "NPC01",
+      "main_path": false,
+      "text": "Отлично. Теперь у проекта появился бюджет на кофе.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_QUESTION_UI",
+      "speaker": "NPC01",
+      "main_path": false,
+      "text": "Интерфейс помогает человеку понять, что можно сделать. Но за каждым действием должна стоять работающая логика.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_QUESTION_PROJECT",
+      "speaker": "NPC01",
+      "main_path": false,
+      "text": "Наш текущий проект — эта VR-игра. Сейчас ты помогаешь нам проверить одну из её идей.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC02_C02_HELLO",
+      "speaker": "NPC02",
+      "main_path": true,
+      "text": "Я Ашраф. Панель готова — теперь проверим, умеет ли гид ждать человека.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC02_C02_BUG",
+      "speaker": "NPC02",
+      "main_path": true,
+      "text": "Маршрут он знает. Что за ним вообще-то должны успевать — пока нет.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC02_C02_STEP",
+      "speaker": "NPC02",
+      "main_path": true,
+      "text": "Включи проверку по шагам. Посмотрим, почему он не ждёт.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC02_C02_WAIT",
+      "speaker": "NPC02",
+      "main_path": true,
+      "text": "Перед следующей точкой добавь условие: дождаться гостя.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC02_C02_PREVIEW",
+      "speaker": "NPC02",
+      "main_path": true,
+      "text": "Передвинь значок гостя. Указатель должен ждать, пока гость подойдёт.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC02_C02_WORLD",
+      "speaker": "NPC02",
+      "main_path": true,
+      "text": "Теперь проверим то же поведение в коридоре. Не спеши — гид подождёт.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC02_C02_SUCCESS",
+      "speaker": "NPC02",
+      "main_path": true,
+      "text": "Вот теперь это помощник. До этого был очень уверенный в себе указатель.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC02_C02_HINT",
+      "speaker": "NPC02",
+      "main_path": false,
+      "text": "Сейчас гость ещё не у точки. Программа должна подождать, а не идти дальше.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC02_FREE_DRAW",
+      "speaker": "NPC02",
+      "main_path": false,
+      "text": "На доске можно рисовать. Для хорошей идеи не обязательно сразу писать код.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC02_FREE_DRAWN",
+      "speaker": "NPC02",
+      "main_path": false,
+      "text": "Оставим. Выглядит как начало следующего проекта.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC02_FREE_BASKET",
+      "speaker": "NPC02",
+      "main_path": false,
+      "text": "Точное попадание. С задачами тоже приятно так.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC02_FREE_MISS",
+      "speaker": "NPC02",
+      "main_path": false,
+      "text": "Ничего. Первая версия редко бывает последней.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC02_QUESTION_BUG",
+      "speaker": "NPC02",
+      "main_path": false,
+      "text": "Ошибка — повод проверить предположение. Важно понять причину, исправить и повторить проверку.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC02_QUESTION_BEGIN",
+      "speaker": "NPC02",
+      "main_path": false,
+      "text": "Начать можно с маленькой задачи: что должно происходить и как проверить результат.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC03_C03_HELLO",
+      "speaker": "NPC03",
+      "main_path": true,
+      "text": "Я Ян. Работает — отлично. Осталось проверить, какие действия разрешены гостю.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC03_C03_HIDDEN",
+      "speaker": "NPC03",
+      "main_path": true,
+      "text": "Кнопку редактирования спрятали. Но проверка всё ещё может вызвать само действие.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC03_C03_BUG",
+      "speaker": "NPC03",
+      "main_path": true,
+      "text": "Кнопку спрятали. А запретить действие забыли.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC03_C03_GATE",
+      "speaker": "NPC03",
+      "main_path": true,
+      "text": "Проверка разрешения нужна перед выполнением запроса, а не только перед показом кнопки.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC03_C03_RUN",
+      "speaker": "NPC03",
+      "main_path": true,
+      "text": "Запусти три проверки. Гость смотрит проект, гость меняет маршрут, команда меняет маршрут.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC03_C03_DENYALL",
+      "speaker": "NPC03",
+      "main_path": false,
+      "text": "Запретить всё просто. Но тогда гости не смогут пользоваться гидом.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC03_C03_SUCCESS",
+      "speaker": "NPC03",
+      "main_path": true,
+      "text": "Теперь нужное работает, а запрещённое не меняет данные. Можно запускать вместе.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC03_QUESTION_REAL",
+      "speaker": "NPC03",
+      "main_path": false,
+      "text": "Здесь только учебные данные. К настоящим системам и аккаунтам университета эта проверка не подключена.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC03_QUESTION_SECURITY",
+      "speaker": "NPC03",
+      "main_path": false,
+      "text": "Безопасность — не только защита от атаки. Это ещё и правильные правила обычной работы программы.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_FINAL_START",
+      "speaker": "NPC01",
+      "main_path": true,
+      "text": "Запускай гостевой режим. Это уже ваша работающая версия.",
+      "audio_file": null,
+      "approval": null,
+      "delivery": "LABELLED_REMOTE_PRERECORDED_ON_GUIDE_PANEL",
+      "no_avatar_relocation": true
+    },
+    {
+      "id": "NPC02_FINAL_TRACE",
+      "speaker": "NPC02",
+      "main_path": true,
+      "text": "А теперь видно, что произошло за одним нажатием: событие, проверка и результат.",
+      "audio_file": null,
+      "approval": null,
+      "delivery": "LABELLED_REMOTE_PRERECORDED_ON_GUIDE_PANEL",
+      "no_avatar_relocation": true
+    },
+    {
+      "id": "NPC03_FINAL_SUMMARY",
+      "speaker": "NPC03",
+      "main_path": true,
+      "text": "Ты собрал интерфейс, исправил поведение и проверил доступ. Это небольшая часть разработки, но она уже работает.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "NPC01_FINAL_MEET",
+      "speaker": "NPC01",
+      "main_path": true,
+      "text": "На связи Самандар. Первый проект запущен. А теперь познакомимся уже без шлема?",
+      "audio_file": null,
+      "approval": null,
+      "delivery": "LABELLED_REMOTE_PRERECORDED_ON_GUIDE_PANEL",
+      "no_avatar_relocation": true
+    },
+    {
+      "id": "SYSTEM_PAUSED",
+      "speaker": "SYSTEM",
+      "main_path": true,
+      "text": "Игра на паузе. Продолжим, когда будет удобно.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "SYSTEM_TRACKING",
+      "speaker": "SYSTEM",
+      "main_path": true,
+      "text": "Руки пока не видны. Верни их перед собой, затем продолжай.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "SYSTEM_RECOVER_PROP",
+      "speaker": "SYSTEM",
+      "main_path": false,
+      "text": "Предмет вернулся на подставку. Можно попробовать снова.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "SYSTEM_ASSIST",
+      "speaker": "SYSTEM",
+      "main_path": false,
+      "text": "Показать один шаг? Остальную проверку ты сможешь выполнить сам.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "SYSTEM_RESET",
+      "speaker": "SYSTEM",
+      "main_path": true,
+      "text": "Новый сеанс готов. Выберите язык и способ управления.",
+      "audio_file": null,
+      "approval": null
+    },
+    {
+      "id": "SYSTEM_WRONG_LINK",
+      "speaker": "SYSTEM",
+      "main_path": false,
+      "text": "Эти блоки не соединяются. Выбери совместимый вход.",
+      "audio_file": null,
+      "approval": null
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "max_nodes": 12,
+  "max_edges": 16,
+  "max_trace_entries": 512,
+  "ports": [
+    "event",
+    "flow",
+    "location_id",
+    "bool",
+    "request",
+    "decision"
+  ],
+  "allow_arbitrary_code": false,
+  "allow_external_requests": false,
+  "challenges": [
+    {
+      "id": "C01",
+      "node_types": [
+        "OnPressed",
+        "SelectedLocation",
+        "ShowRoute"
+      ],
+      "success_test_ids": [
+        "TC-C01-01",
+        "TC-C01-02",
+        "TC-C01-03"
+      ]
+    },
+    {
+      "id": "C02",
+      "node_types": [
+        "MoveToWaypoint",
+        "WaitForGuest",
+        "AdvanceWaypoint"
+      ],
+      "success_test_ids": [
+        "TC-C02-01",
+        "TC-C02-02"
+      ]
+    },
+    {
+      "id": "C03",
+      "node_types": [
+        "ReceiveDemoRequest",
+        "RequirePermission",
+        "ExecuteDemoOperation",
+        "RejectDemoOperation"
+      ],
+      "success_test_ids": [
+        "TC-C03-01",
+        "TC-C03-02"
+      ]
+    }
+  ],
+  "authorization_cases": [
+    {
+      "id": "AUTH-01",
+      "role": "guest",
+      "action": "view_public_project",
+      "expected": "ALLOW"
+    },
+    {
+      "id": "AUTH-02",
+      "role": "guest",
+      "action": "edit_route",
+      "expected": "DENY"
+    },
+    {
+      "id": "AUTH-03",
+      "role": "team",
+      "action": "edit_route",
+      "expected": "ALLOW"
+    }
+  ]
+}

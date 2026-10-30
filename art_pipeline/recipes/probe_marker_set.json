@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "asset_id": "PROBE_MARKER_SET",
+  "generator_type": "marker_set",
+  "level": "prototype",
+  "dimensions_m": [
+    0.02,
+    0.02,
+    0.14
+  ],
+  "bevel_m": 0.001,
+  "dimensions_provenance": "SYNTHETIC_TOOLCHAIN_PROBE",
+  "source_ids": [
+    "SYNTHETIC_TOOLCHAIN_PROBE"
+  ],
+  "dimensions_evidence": null,
+  "not_for_campus": true
+}

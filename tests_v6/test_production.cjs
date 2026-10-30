@@ -1,0 +1,43 @@
+'use strict';const assert=require('node:assert/strict');const R=require('../src/reference/runtime.js');const V=require('../src/reference/production.js');
+const results=[];function test(name,fn){try{fn();results.push({name,status:'PASS'});}catch(e){results.push({name,status:'FAIL',error:e.stack});}}
+function setup(){const s=new R.Session(),t=new R.Topology(['A','B','C'],[['A','B'],['B','C']]);return[s,new V.GuideProject(s,t,'A')];}
+function finish(s,p){for(const id of['C01','C02','C03']){p.setGraph(R.graph(id),s.token());assert.ok(p.check(id,s.token(),'B','C'));}}
+for(const [profile,npc,sessions,coffee,pass]of[['environment',0,0,false,true],['environment',3,0,false,false],['interaction_slice',0,1,true,true],['complete_game',0,1,true,false],['complete_game',3,1,true,true],['release',3,1,true,false]])test('profile '+profile+' '+npc,()=>assert.equal(V.scenePolicy(profile,npc,sessions,coffee,true).length===0,pass));
+test('invalid profile rejects',()=>assert.throws(()=>V.scenePolicy('auto',0,0,false,true)));
+test('environment missing material still rejects',()=>assert.deepEqual(V.scenePolicy('environment',0,0,false,false),['missing_material']));
+test('complete no session rejects',()=>assert.ok(V.scenePolicy('complete_game',3,0,true,true).includes('exactly_one_session_required')));
+test('new configuration is not verified',()=>{const[s,p]=setup();assert.throws(()=>p.seal());assert.equal(p.check('C01',s.token(),'B','C'),false);});
+test('all three real probes seal',()=>{const[s,p]=setup();finish(s,p);assert.ok(p.seal().policy.requiresPermission);});
+for(const id of['C01','C02','C03'])test('edit invalidates seal '+id,()=>{const[s,p]=setup();finish(s,p);p.setGraph(R.graph(id));assert.throws(()=>p.seal());assert.equal(s.ready,false);});
+test('C01 requires two distinct destinations',()=>{const[s,p]=setup();p.setGraph(R.graph('C01'));assert.equal(p.check('C01',s.token(),'B','B'),false);});
+test('C03 cannot skip C02',()=>{const[s,p]=setup();p.setGraph(R.graph('C01'));p.check('C01',s.token(),'B','C');p.setGraph(R.graph('C03'));assert.equal(p.check('C03'),false);});
+test('invalid graph does not replace last config',()=>{const[s,p]=setup();finish(s,p);const d=R.graph('C01');d.nodes.bad='ReadFile';assert.throws(()=>p.setGraph(d));assert.ok(p.seal());});
+test('permission allow-all fails',()=>{const[s,p]=setup();finish(s,p);const d=R.graph('C03');d.permissions.guest_edit=true;p.setGraph(d);assert.equal(p.check('C03'),false);});
+test('permission deny-all fails',()=>{const[s,p]=setup();finish(s,p);const d=R.graph('C03');d.permissions={guest_view:false,guest_edit:false,team_edit:false};p.setGraph(d);assert.equal(p.check('C03'),false);});
+test('reset refuses stale project events',()=>{const[s,p]=setup();finish(s,p);const t=s.token();s.reset();assert.equal(p.setGraph(R.graph('C01'),t),false);assert.throws(()=>p.seal(t));p.reset();assert.equal(p.check('C01'),false);});
+test('pause forbids mutation and final',()=>{const[s,p]=setup();finish(s,p);s.setPause('tracking',true);assert.equal(p.setGraph(R.graph('C01')),false);assert.throws(()=>p.seal());s.setPause('tracking',false);assert.ok(p.seal());});
+test('compiled final remains independent after edits',()=>{const[s,p]=setup();finish(s,p);const f=p.seal();p.setGraph(R.graph('C01',false));assert.equal(f.ui.linked,true);assert.equal(p.graphs[0].linked,false);});
+test('recovery held prop does not teleport',()=>{const s=new R.Session(),p=new V.RecoverableProp(s);p.hold();assert.equal(p.tryReturn(true),false);});
+test('recovery loss does not mean throw or automatic return',()=>{const s=new R.Session(),p=new V.RecoverableProp(s);p.hold();p.lostTracking();assert.equal(p.held,true);assert.equal(p.tryReturn(true),false);p.release();assert.ok(p.tryReturn(true));});
+test('recovery requires clear destination',()=>{const p=new V.RecoverableProp(new R.Session());assert.equal(p.tryReturn(false),false);assert.equal(p.returnCount,0);});
+test('recovery epoch fence',()=>{const s=new R.Session(),p=new V.RecoverableProp(s);s.reset();assert.equal(p.tryReturn(true),false);p.reset();assert.ok(p.tryReturn(true));});
+test('recovery cannot operate on pause',()=>{const s=new R.Session(),p=new V.RecoverableProp(s);s.setPause('system',true);assert.equal(p.hold(),false);assert.equal(p.tryReturn(true),false);});
+test('drawing golden line',()=>{const b=new V.DrawingSurface(9,9);b.begin();b.line(0,0,1,0,.5,1);b.end();assert.equal(b.count(),9);});
+test('eraser removes only affected area, undo restores',()=>{const b=new V.DrawingSurface(9,9);b.begin();b.line(0,0,1,0,.5,1);b.end();b.begin();b.line(.5,0,.5,0,.5,0);b.end();assert.equal(b.count(),8);assert.ok(b.undo());assert.equal(b.count(),9);});
+test('cancel does not commit incomplete stroke',()=>{const b=new V.DrawingSurface();b.begin();b.line(0,0,1,1,1,1);b.cancel();assert.equal(b.count(),0);assert.equal(b.undo(),false);});
+test('snapshot cannot alter board',()=>{const b=new V.DrawingSurface();const p=b.snapshot();p[0]=4;assert.equal(b.count(),0);});
+test('blank stroke no undo slot',()=>{const b=new V.DrawingSurface();b.begin();b.end();assert.equal(b.history.length,0);});
+test('undo bounded after 50 strokes',()=>{const b=new V.DrawingSurface(64,64,3);for(let i=0;i<50;i++){b.begin();b.line(i/50,0,i/50,1,.5,1+i%5);b.end();}assert.equal(b.history.length,3);});
+test('drawing NaN and palette reject',()=>{const b=new V.DrawingSurface();b.begin();assert.throws(()=>b.line(NaN,0,1,1,1,1));assert.throws(()=>b.line(0,0,1,1,1,6));assert.throws(()=>b.line(0,0,1,1,0,1));});
+test('drawing budget validates',()=>{assert.throws(()=>new V.DrawingSurface(1024,128));assert.throws(()=>new V.DrawingSurface(256,128,0));});
+test('reset clears board and history',()=>{const b=new V.DrawingSurface();b.begin();b.line(0,0,1,1,1,1);b.end();b.reset();assert.equal(b.count(),0);assert.equal(b.undo(),false);});
+test('basket side contact not score',()=>{const b=new V.PaperBasketProbe();assert.equal(b.tick(true,.2),false);});
+test('basket needs downward tracked release',()=>{const b=new V.PaperBasketProbe();b.enterMouth(true,false);assert.equal(b.tick(true,.2),false);b.enterMouth(false,true);assert.equal(b.tick(true,.2),false);});
+test('basket exit resets dwell',()=>{const b=new V.PaperBasketProbe();b.enterMouth(true,true);b.tick(true,.1);b.tick(false,.1);assert.equal(b.tick(true,.2),false);});
+test('basket scores once',()=>{const b=new V.PaperBasketProbe();b.enterMouth(true,true);assert.ok(b.tick(true,.2));assert.equal(b.tick(true,.2),false);});
+test('basket pause no progress',()=>{const b=new V.PaperBasketProbe();b.enterMouth(true,true);assert.equal(b.tick(true,10,true),false);assert.equal(b.tick(true,.1),false);});
+test('Session callbacks from another instance rejected',()=>{const a=new R.Session(),b=new R.Session();assert.equal(a.epoch,b.epoch);assert.equal(b.valid(a.token()),false);assert.equal(b.finish('C01',a.token()),false);});
+test('Serialized token does not authorize live callback',()=>{const s=new R.Session();assert.equal(s.valid(JSON.parse(JSON.stringify(s.token()))),false);});
+test('Reset creates a new opaque token',()=>{const s=new R.Session(),t=s.token();s.reset();assert.notEqual(s.token(),t);assert.equal(s.valid(t),false);assert.equal(s.valid(s.token()),true);});
+const fail=results.filter(x=>x.status==='FAIL');for(const r of results)console.log(r.status,r.name,r.error||'');console.log(JSON.stringify({scope:'JS_REFERENCE_V6',passed:results.length-fail.length,failed:fail.length}));
+if(process.argv.includes('--json'))require('node:fs').writeFileSync(require('node:path').join(__dirname,'../reports/v6/reference_v6.json'),JSON.stringify({results,passed:results.length-fail.length,failed:fail.length},null,2));process.exitCode=fail.length?1:0;
