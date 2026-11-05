@@ -29,9 +29,21 @@
       "test_ids": [
         "TC-PROP-01"
       ],
-      "status": "SOURCES_PREPARED_NOT_UNITY_TESTED",
-      "readiness_scope": "UNITY_XR_NOT_INTEGRATED",
-      "v6_contract": "docs/process/ASSEMBLY_AND_CONTACTS_V6.md"
+      "status": "UNITY_EDITOR_VERIFIED_DEVICE_NOT_RUN",
+      "readiness_scope": "UNITY_COMPILE_EDITMODE_PLAYMODE_PASS_QUEST_NOT_RUN",
+      "v6_contract": "docs/process/ASSEMBLY_AND_CONTACTS_V6.md",
+      "implementation": [
+        "unity/ITPU_VR_Unity/Packages/com.itpu.domain/Runtime/PropsAndNpc.cs",
+        "unity/ITPU_VR_Unity/Assets/ITPU/Runtime/CoffeeInteractionController.cs",
+        "unity/ITPU_VR_Unity/Assets/ITPU/Runtime/CoffeeCupGrabAdapter.cs"
+      ],
+      "saved_scene": "unity/ITPU_VR_Unity/Assets/ITPU/Scenes/ITPU_403_XR.unity",
+      "verified": {
+        "unity_version": "6000.6.2f1",
+        "editmode": "21/21 PASS",
+        "playmode": "39/39 PASS",
+        "quest": "NOT_RUN"
+      }
     },
     {
       "id": "INT-03",
@@ -46,16 +58,29 @@
       "test_ids": [
         "TC-PROP-03"
       ],
-      "status": "SOURCES_PREPARED_NOT_UNITY_TESTED",
-      "readiness_scope": "UNITY_XR_NOT_INTEGRATED",
-      "implementation": "src/domain/DrawingSurface.cs",
+      "status": "UNITY_EDITOR_VERIFIED_DEVICE_NOT_RUN",
+      "readiness_scope": "UNITY_COMPILE_EDITMODE_PLAYMODE_PASS_QUEST_NOT_RUN",
+      "implementation": [
+        "src/domain/DrawingSurface.cs",
+        "unity/ITPU_VR_Unity/Packages/com.itpu.domain/Runtime/DrawingSurface.cs",
+        "unity/ITPU_VR_Unity/Assets/ITPU/Runtime/BoardDrawingController.cs",
+        "unity/ITPU_VR_Unity/Assets/ITPU/Runtime/BoardCommandInteractable.cs"
+      ],
+      "saved_scene": "unity/ITPU_VR_Unity/Assets/ITPU/Scenes/ITPU_403_XR.unity",
       "limits": {
         "width": 256,
         "height": 128,
         "palette_entries": 6,
         "undo_snapshots": 12
       },
-      "erase": "palette index0 raster segment, partial not all strokes"
+      "erase": "palette index0 raster segment, partial not all strokes",
+  "marker_color": "BOARD_COLOR_BUTTON cycles palette indices 1 through 5; only future marker strokes use the new index; reset restores index1",
+      "verified": {
+        "unity_version": "6000.6.2f1",
+    "editmode": "31/31 PASS",
+    "playmode": "47/47 PASS",
+        "quest": "NOT_RUN"
+      }
     },
     {
       "id": "INT-04",
@@ -70,9 +95,22 @@
       "test_ids": [
         "TC-PROP-05"
       ],
-      "status": "SOURCES_PREPARED_NOT_UNITY_TESTED",
-      "readiness_scope": "UNITY_XR_NOT_INTEGRATED",
-      "implementation_scope": "Basket entry/dwell domain probe prepared; XR throw/pool integration NOT_RUN"
+      "status": "UNITY_EDITOR_VERIFIED_DEVICE_NOT_RUN",
+      "readiness_scope": "UNITY_COMPILE_EDITMODE_PLAYMODE_PASS_QUEST_NOT_RUN",
+      "implementation": [
+        "unity/ITPU_VR_Unity/Packages/com.itpu.domain/Runtime/PaperBasketProbe.cs",
+        "unity/ITPU_VR_Unity/Assets/ITPU/Runtime/XrGrabTarget.cs",
+        "unity/ITPU_VR_Unity/Assets/ITPU/Runtime/PaperPropGrabAdapter.cs",
+        "unity/ITPU_VR_Unity/Assets/ITPU/Runtime/PaperBasketSensor.cs"
+      ],
+      "implementation_scope": "Three fixed reusable paper slots; explicit crumple; shared controller/hand grab path; tracked downward mouth+dwell scoring; miss/scored/lost recovery; deterministic reset.",
+      "saved_scene": "unity/ITPU_VR_Unity/Assets/ITPU/Scenes/ITPU_403_XR.unity",
+      "verified": {
+        "unity_version": "6000.6.2f1",
+        "editmode": "31/31 PASS",
+        "playmode": "46/46 PASS",
+        "quest": "NOT_RUN"
+      }
     },
     {
       "id": "INT-05",

@@ -736,8 +736,9 @@ namespace ITPU.XR.Tests.PlayMode
             Assert.That(handTelemetry.LeftVisual, Is.Not.Null);
             Assert.That(handTelemetry.RightVisual, Is.Not.Null);
             Assert.That(Object.FindObjectsByType<DemoPressInteractable>(FindObjectsInactive.Include,
-                    FindObjectsSortMode.None), Has.Length.EqualTo(13),
-                "accepted base/C01 controls plus exactly three C02 and five fixed C03 controls are required");
+                    FindObjectsSortMode.None), Has.Length.EqualTo(14),
+                "accepted base/C01 controls, three C02, five fixed C03 and one coffee control are required");
+            Assert.That(GameObject.Find("COFFEE_BREW_BUTTON"), Is.Not.Null);
             var interactionIds = Object.FindObjectsByType<StableId>(FindObjectsInactive.Include,
                 FindObjectsSortMode.None).Select(item => item.Value).ToArray();
             Assert.That(interactionIds, Does.Contain("interaction.c02-step"));

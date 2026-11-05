@@ -24,8 +24,15 @@ namespace ITPU.XR
         private bool pinched;
         private bool neutralRequired = true;
         private bool uiCaptured;
+        private BoardDrawingController activeBoard;
         private string hoverAnchor = "";
         private double hoverBeganAt;
+        private XrGrabTarget heldTarget;
+        private Vector3 previousGripPosition;
+        private Quaternion previousGripRotation = Quaternion.identity;
+        private double previousGripTime;
+        private Vector3 releaseVelocity;
+        private Vector3 releaseAngularVelocity;
 
         public string Source => leftHand ? "left-hand" : "right-hand";
         public XrPointerVisual PointerVisual => pointerVisual;
@@ -105,9 +112,12 @@ namespace ITPU.XR
             RaycastHit hit = default;
             var hasHit = validRay && Physics.Raycast(ray, out hit, maxDistance, rayMask,
                 QueryTriggerInteraction.Collide);
+            var grabTarget = hasHit ? hit.collider.GetComponentInParent<XrGrabTarget>() : null;
             var interactable = hasHit ? hit.collider.GetComponentInParent<DemoPressInteractable>() : null;
+            var boardCommand = hasHit ? hit.collider.GetComponentInParent<BoardCommandInteractable>() : null;
+            var board = hasHit ? hit.collider.GetComponentInParent<BoardDrawingController>() : null;
             var surface = hasHit ? hit.collider.GetComponentInParent<TeleportSurface>() : null;
-            var targetKind = interactable != null
+            var targetKind = grabTarget != null || interactable != null || boardCommand != null || board != null
                 ? XrAimTargetKind.Interactable
                 : surface != null && surface.isActiveAndEnabled
                     ? XrAimTargetKind.Teleport
@@ -115,6 +125,58 @@ namespace ITPU.XR
             pointerVisual?.Present(!systemGesture && (lifecycle == null || lifecycle.ContextSafe), ray,
                 maxDistance, hasHit, hasHit ? hit.point : default, hasHit ? hit.normal : default,
                 targetKind);
+
+            if (activeBoard != null)
+            {
+                hoverAnchor = "";
+                teleport?.CancelForSource(Source, "BOARD_DRAWING_PRIORITY");
+                if (systemGesture || !validRay || lifecycle != null && !lifecycle.ContextSafe)
+                {
+                    activeBoard.CancelStroke(Source);
+                    activeBoard = null;
+                    neutralRequired = true;
+                    return;
+                }
+                if (pinched)
+                {
+                    activeBoard.UpdateStroke(Source, ray);
+                    return;
+                }
+                if (wasPinched) activeBoard.EndStroke(Source);
+                else activeBoard.CancelStroke(Source);
+                activeBoard = null;
+                neutralRequired = true;
+                return;
+            }
+
+            if (heldTarget != null)
+            {
+                hoverAnchor = "";
+                teleport?.CancelForSource(Source, "HELD_OBJECT_PRIORITY");
+                if (systemGesture)
+                {
+                    heldTarget.MarkTrackingLost(Source);
+                    return;
+                }
+                if (!validRay)
+                {
+                    heldTarget.MarkTrackingLost(Source);
+                    return;
+                }
+                if (pinched)
+                {
+                    var pose = PoseFromRay(ray);
+                    UpdateReleaseVelocity(pose, now);
+                    heldTarget.UpdateGrab(Source, pose);
+                }
+                else
+                {
+                    heldTarget.TryRelease(Source, wasPinched, releaseVelocity, releaseAngularVelocity);
+                    heldTarget = null;
+                    neutralRequired = true;
+                }
+                return;
+            }
 
             if (neutralRequired)
             {
@@ -139,6 +201,31 @@ namespace ITPU.XR
                 return;
             }
 
+            if (grabTarget != null)
+            {
+                hoverAnchor = "";
+                teleport.CancelForSource(Source, "GRAB_PRIORITY");
+                if (pinched && !wasPinched && teleport.CanDirectInteract(true, systemGesture))
+                {
+                    if (grabTarget.TryPrimaryActivate(Source + "-pinch"))
+                    {
+                        uiCaptured = true;
+                        return;
+                    }
+                    var pose = PoseFromRay(ray);
+                    if (grabTarget.TryBeginGrab(Source, pose))
+                    {
+                        heldTarget = grabTarget;
+                        releaseVelocity = Vector3.zero;
+                        releaseAngularVelocity = Vector3.zero;
+                        previousGripPosition = pose.position;
+                        previousGripRotation = pose.rotation;
+                        previousGripTime = now;
+                    }
+                }
+                return;
+            }
+
             if (interactable != null)
             {
                 hoverAnchor = "";
@@ -150,6 +237,30 @@ namespace ITPU.XR
                     try { interactable.TryActivate(Source + "-pinch"); }
                     finally { priority.SetUiBusy(false); }
                 }
+                return;
+            }
+
+            if (boardCommand != null)
+            {
+                hoverAnchor = "";
+                teleport.CancelForSource(Source, "BOARD_COMMAND_PRIORITY");
+                if (pinched && !wasPinched && teleport.CanDirectInteract(true, systemGesture))
+                {
+                    uiCaptured = true;
+                    priority.SetUiBusy(true);
+                    try { boardCommand.TryActivate(Source + "-pinch"); }
+                    finally { priority.SetUiBusy(false); }
+                }
+                return;
+            }
+
+            if (board != null)
+            {
+                hoverAnchor = "";
+                teleport.CancelForSource(Source, "BOARD_DRAWING_PRIORITY");
+                if (pinched && !wasPinched && teleport.CanDirectInteract(true, systemGesture) &&
+                    board.TryBeginStroke(Source, ray))
+                    activeBoard = board;
                 return;
             }
 
@@ -201,6 +312,8 @@ namespace ITPU.XR
 
         public void ResetPointerState()
         {
+            activeBoard?.CancelStroke(Source);
+            activeBoard = null;
             pinched = false;
             neutralRequired = true;
             uiCaptured = false;
@@ -280,11 +393,40 @@ namespace ITPU.XR
         private void LoseTracking()
         {
             teleport?.CancelForSource(Source, "HAND_TRACKING_LOST");
+            heldTarget?.MarkTrackingLost(Source);
+            activeBoard?.CancelStroke(Source);
+            activeBoard = null;
             pinched = false;
             neutralRequired = true;
             uiCaptured = false;
             hoverAnchor = "";
             pointerVisual?.Hide();
+        }
+
+        private static Pose PoseFromRay(Ray ray)
+        {
+            var rotation = ray.direction.sqrMagnitude < 0.9f
+                ? Quaternion.identity
+                : Quaternion.LookRotation(ray.direction.normalized, Vector3.up);
+            return new Pose(ray.origin, rotation);
+        }
+
+        private void UpdateReleaseVelocity(Pose pose, double now)
+        {
+            var dt = now - previousGripTime;
+            if (dt > 0.001 && dt <= 0.1)
+            {
+                releaseVelocity = Vector3.ClampMagnitude((pose.position - previousGripPosition) / (float)dt, 4f);
+                var delta = pose.rotation * Quaternion.Inverse(previousGripRotation);
+                delta.ToAngleAxis(out var angle, out var axis);
+                if (angle > 180f) angle -= 360f;
+                releaseAngularVelocity = axis.sqrMagnitude < 0.5f
+                    ? Vector3.zero
+                    : Vector3.ClampMagnitude(axis.normalized * (angle * Mathf.Deg2Rad / (float)dt), 12f);
+            }
+            previousGripPosition = pose.position;
+            previousGripRotation = pose.rotation;
+            previousGripTime = now;
         }
     }
 }
